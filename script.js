@@ -45,7 +45,7 @@ document.getElementById('cadastroUsuarioForm')?.addEventListener('submit', funct
     localStorage.setItem('users', JSON.stringify(users));
 
     alert('Usuário cadastrado com sucesso!');
-    window.location.href = 'index.html'; // Redireciona para a tela de login
+   // Redireciona para a tela de login
 });
 
 // Função para cadastrar equipamentos
