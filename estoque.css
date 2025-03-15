@@ -1,0 +1,55 @@
+body {
+    background: linear-gradient(135deg, #6a11cb, #2575fc);
+}
+
+.container {
+    background: rgba(255, 255, 255, 0.95);
+    max-width: 800px; /* Aumentamos a largura para a tabela */
+}
+
+h2 {
+    color: #e4e4e4;
+}
+a{
+    color: #070a0f;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    background: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+th, td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+th {
+    background: linear-gradient(135deg, #6a11cb, #2575fc);
+    color: #fff;
+    font-weight: 500;
+}
+
+tr:hover {
+    background-color: #f9f9f9;
+}
+
+.delete-btn {
+    background: #ff4d4d;
+    color: #fff;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.delete-btn:hover {
+    background: #cc0000;
+}
