@@ -1,3 +1,5 @@
+import { excluirEquipamento } from "./task.js";
+
 // Verifica se já existem usuários no LocalStorage, caso contrário, inicializa com um usuário padrão
 if (!localStorage.getItem('users')) {
     const defaultUser = [{ username: "admin", password: "admin123" }];
@@ -14,7 +16,7 @@ document.getElementById('loginForm')?.addEventListener('submit', function(event)
     const user = users.find(u => u.username === username && u.password === password);
 
     if (user) {
-        window.location.href = 'cadastro.html';
+        window.location.href = 'cadastro-equipamento.html';
     } else {
         alert('Usuário ou senha incorretos!');
     }
@@ -60,7 +62,7 @@ document.getElementById('cadastroForm')?.addEventListener('submit', function(eve
         funcionario
     };
 
-    // Salva no LocalStorage
+    //Salva no LocalStorage
     let equipamentos = JSON.parse(localStorage.getItem('equipamentos')) || [];
     equipamentos.push(equipamento);
     localStorage.setItem('equipamentos', JSON.stringify(equipamentos));
@@ -90,12 +92,3 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 });
-
-// Função para excluir um equipamento
-function excluirEquipamento(index) {
-    let equipamentos = JSON.parse(localStorage.getItem('equipamentos')) || [];
-    equipamentos.splice(index, 1);
-    localStorage.setItem('equipamentos', JSON.stringify(equipamentos));
-    alert('Equipamento excluído com sucesso!');
-    location.reload(); // Recarrega a página para atualizar a tabela
-}
