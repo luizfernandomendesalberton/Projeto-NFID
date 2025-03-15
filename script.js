@@ -14,7 +14,7 @@ document.getElementById('loginForm')?.addEventListener('submit', function(event)
     const user = users.find(u => u.username === username && u.password === password);
 
     if (user) {
-        window.location.href = 'cadastro.html'; // Redireciona para a tela de cadastro de equipamentos
+        window.location.href = 'cadastro.html';
     } else {
         alert('Usuário ou senha incorretos!');
     }
@@ -45,7 +45,6 @@ document.getElementById('cadastroUsuarioForm')?.addEventListener('submit', funct
     localStorage.setItem('users', JSON.stringify(users));
 
     alert('Usuário cadastrado com sucesso!');
-   // Redireciona para a tela de login
 });
 
 // Função para cadastrar equipamentos
@@ -69,6 +68,7 @@ document.getElementById('cadastroForm')?.addEventListener('submit', function(eve
     alert('Equipamento cadastrado com sucesso!');
     document.getElementById('cadastroForm').reset();
 });
+
 // Função para carregar o estoque
 document.addEventListener('DOMContentLoaded', function() {
     const estoqueTable = document.getElementById('estoqueTable')?.getElementsByTagName('tbody')[0];
@@ -94,8 +94,8 @@ document.addEventListener('DOMContentLoaded', function() {
 // Função para excluir um equipamento
 function excluirEquipamento(index) {
     let equipamentos = JSON.parse(localStorage.getItem('equipamentos')) || [];
-    equipamentos.splice(index, 1); // Remove o equipamento do array
-    localStorage.setItem('equipamentos', JSON.stringify(equipamentos)); // Atualiza o LocalStorage
+    equipamentos.splice(index, 1);
+    localStorage.setItem('equipamentos', JSON.stringify(equipamentos));
     alert('Equipamento excluído com sucesso!');
     location.reload(); // Recarrega a página para atualizar a tabela
 }
