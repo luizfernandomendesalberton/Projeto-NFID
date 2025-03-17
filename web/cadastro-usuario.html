@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,21 +9,25 @@
     <link rel="stylesheet" href="./styles/login-cadastro.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
 </head>
+
 <body>
     <div class="container">
         <h2>Cadastro de Usuário</h2>
         <form id="cadastroUsuarioForm">
             <label for="novoUsername">Usuário:</label>
             <input type="text" id="novoUsername" name="novoUsername" required>
-            
+
             <label for="novaSenha">Senha:</label>
             <input type="password" id="novaSenha" name="novaSenha" required>
-            
-            <button type="submit">Cadastrar</button>
+
         </form>
-        <a href="login.html">Voltar ao Login</a>
+        <div class="botoes">
+            <a id="voltarLogin" href="login.html">Voltar ao Login</a>
+            <button id="cadastrarF" type="submit">Cadastrar</button>
+        </div>
     </div>
 
     <script type="module" src="./scripts/script.js"></script>
 </body>
+
 </html>

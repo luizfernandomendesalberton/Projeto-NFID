@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,25 +9,29 @@
     <link rel="stylesheet" href="./styles/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
 </head>
+
 <body>
-    <div class="cadastro-container">
+    <div class="container">
         <h2>Cadastro de Equipamentos</h2>
         <form id="cadastroForm">
             <label for="numeroSerie">Número de Série:</label>
             <input type="text" id="numeroSerie" name="numeroSerie" required>
-            
+
             <label for="local">Local:</label>
             <input type="text" id="local" name="local" required>
-            
+
             <label for="funcionario">Funcionário Responsável:</label>
             <input type="text" id="funcionario" name="funcionario" required>
-            
+
             <button type="submit">Cadastrar</button>
         </form>
-        <a href="estoque.html">Ver Estoque</a>
-        <a id="sair" href="login.html">Sair</a>
+        <div class="botoes">
+            <a id="sair" href="login.html" style="margin-top: 10px;">Sair</a>
+            <a id="estoqueF" href="estoque.html">Ver Estoque</a>
+        </div>
     </div>
 
     <script type="module" src="./scripts/script.js"></script>
 </body>
+
 </html>

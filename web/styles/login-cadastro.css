@@ -1,11 +1,47 @@
-body {
-    background: linear-gradient(135deg, #6a11cb, #2575fc);
-}
-
 button {
     background: linear-gradient(135deg, #6a11cb, #2575fc);
 }
 
 button:hover {
     background: linear-gradient(135deg, #2575fc, #6a11cb);
+}
+
+.botoes {
+    display: flex;
+    justify-content: space-between;
+}
+
+#cadastrarF, #entrarFuncionario, #estoqueF {
+    width: 150px;
+}
+
+#estoqueF {
+    padding: 7px;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: transform 0.3s ease, background 0.3s ease;
+    background: linear-gradient(135deg, #6a11cb, #2575fc);
+}
+
+#estoqueF:hover {
+    background: linear-gradient(135deg, #ff6262, #ff2222);
+    transform: translateY(-2px);
+}
+
+#voltarLogin, #sair {
+    padding: 7px;
+    margin: 0px;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: transform 0.3s ease, background 0.3s ease;
+    background: linear-gradient(135deg, #ff2222, #ff6262);
+}
+
+#voltarLogin:hover, #sair:hover {
+    background: linear-gradient(135deg, #ff6262, #ff2222);
+    transform: translateY(-2px);
 }
