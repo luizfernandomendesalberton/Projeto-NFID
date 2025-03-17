@@ -28,7 +28,6 @@ document.getElementById('cadastroUsuarioForm')?.addEventListener('submit', funct
     const novoUsername = document.getElementById('novoUsername').value;
     const novaSenha = document.getElementById('novaSenha').value;
 
-    // Verifica se o usuário já existe
     const users = JSON.parse(localStorage.getItem('users'));
     const userExists = users.some(u => u.username === novoUsername);
 
