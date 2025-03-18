@@ -9,24 +9,28 @@ document.getElementById('loginForm')?.addEventListener('submit', async function 
 
     const loginData = { username, password };
 
-    try {
-        const resposta = await fetch('http://127.0.0.1:5000/login', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(loginData)
-        });
+    const urls = [
+        'http://127.0.0.1:5000/login',
+        'https://b188-177-74-79-181.ngrok-free.app/login'
+    ];
 
-        const resultado = await resposta.json();
+    for (const url of urls) {
+        try {
+            const resposta = await fetch(url, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(loginData)
+            });
 
-        if (resposta.ok) {
-            alert(resultado.mensagem);
-            window.location.href = 'cadastro-equipamento.html';
-        } else {
-            alert(resultado.mensagem);
+            if (resposta.ok) {
+                const resultado = await resposta.json();
+                alert(resultado.mensagem);
+                window.location.href = 'cadastro-equipamento.html';
+                return;
+            }
+        } catch (erro) {
+            console.warn(`Falha ao conectar em ${url}:`, erro);
         }
-    } catch (erro) {
-        console.error('Erro ao tentar logar:', erro);
-        alert('Erro ao conectar com o servidor.');
     }
 });
 
@@ -38,19 +42,29 @@ document.getElementById('cadastroUsuarioForm')?.addEventListener('submit', async
     const novaSenha = document.getElementById('novaSenha').value;
 
     const newUser = { username: novoUsername, password: novaSenha };
-    console.log("dados: " + newUser);
+    const urls = [
+        'http://127.0.0.1:5000/cadastro-usuario',
+        'https://b188-177-74-79-181.ngrok-free.app/cadastro-usuario'
+    ];
 
+    for (const url of urls) {
+        try {
+            const resposta = await fetch(url, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(newUser)
+            });
 
-    const resposta = await fetch('http://127.0.0.1:5000/cadastro-usuario', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(newUser)
-    });
-
-    const resultado = await resposta.json();
-    console.log(resultado);
-
-    alert(resultado.mensagem);
+            if (resposta.ok) {
+                const resultado = await resposta.json();
+                console.log(resultado);
+                alert(resultado.mensagem);
+                return;
+            }
+        } catch (erro) {
+            console.warn(`Falha ao conectar em ${url}:`, erro);
+        }
+    }
 });
 
 // Função para cadastrar equipamentos
@@ -62,50 +76,75 @@ document.getElementById('cadastroForm')?.addEventListener('submit', async functi
     const funcionario = document.getElementById('funcionario').value;
 
     const equipamento = { numeroSerie, local, funcionario };
+    const urls = [
+        'http://127.0.0.1:5000/cadastrar-equipamento',
+        'https://b188-177-74-79-181.ngrok-free.app/cadastrar-equipamento'
+    ];
 
-    const resposta = await fetch('http://127.0.0.1:5000/cadastrar-equipamento', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(equipamento)
-    });
+    for (const url of urls) {
+        try {
+            const resposta = await fetch(url, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(equipamento)
+            });
 
-    const resultado = await resposta.json();
-    alert(resultado.mensagem);
-    document.getElementById('cadastroForm').reset();
+            if (resposta.ok) {
+                const resultado = await resposta.json();
+                alert(resultado.mensagem);
+                document.getElementById('cadastroForm').reset();
+                return;
+            }
+        } catch (erro) {
+            console.warn(`Falha ao conectar em ${url}:`, erro);
+        }
+    }
+
+    alert('Erro ao conectar com o servidor.');
 });
 
 // Função para carregar o estoque do servidor
 document.addEventListener('DOMContentLoaded', async function () {
     const estoqueTable = document.getElementById('estoqueTable')?.getElementsByTagName('tbody')[0];
-    if (estoqueTable) {
+    if (!estoqueTable) return;
+
+    const urls = [
+        'http://127.0.0.1:5000/estoque',
+        'https://b188-177-74-79-181.ngrok-free.app/estoque'
+    ];
+
+    for (const url of urls) {
         try {
-            const resposta = await fetch('http://127.0.0.1:5000/estoque');
-            if (!resposta.ok) throw new Error('Erro ao buscar estoque');
+            const resposta = await fetch(url);
+            if (resposta.ok) {
+                const materiais = await resposta.json();
+                estoqueTable.innerHTML = '';
 
-            const materiais = await resposta.json();
+                materiais.forEach((material) => {
+                    const row = estoqueTable.insertRow();
+                    row.insertCell(0).textContent = material.numeroSerie;
+                    row.insertCell(1).textContent = material.local;
+                    row.insertCell(2).textContent = material.funcionario;
 
-            materiais.forEach((material, index) => {
-                const row = estoqueTable.insertRow();
-                row.insertCell(0).textContent = material.numeroSerie;
-                row.insertCell(1).textContent = material.local;
-                row.insertCell(2).textContent = material.funcionario;
+                    // Botão de exclusão
+                    const cellAcoes = row.insertCell(3);
+                    const deleteBtn = document.createElement('button');
+                    deleteBtn.textContent = 'Excluir';
+                    deleteBtn.classList.add('delete-btn');
+                    deleteBtn.setAttribute('data-id', material.numeroSerie);
+                    cellAcoes.appendChild(deleteBtn);
 
-                // Botão de exclusão
-                const cellAcoes = row.insertCell(3);
-                const deleteBtn = document.createElement('button');
-                deleteBtn.textContent = 'Excluir';
-                deleteBtn.classList.add('delete-btn');
-                deleteBtn.setAttribute('data-id', material.numeroSerie);
-                cellAcoes.appendChild(deleteBtn);
-
-                deleteBtn.addEventListener('click', function () {
-                    const id = this.getAttribute('data-id');
-                    console.log(`ID do material a excluir: ${id}`);
-                    excluirMaterial(id);
+                    deleteBtn.addEventListener('click', function () {
+                        const id = this.getAttribute('data-id');
+                        console.log(`ID do material a excluir: ${id}`);
+                        excluirMaterial(id);
+                    });
                 });
-            });
+
+                return;
+            }
         } catch (error) {
-            console.error('Erro ao carregar estoque:', error);
+            console.warn(`Erro ao carregar estoque de ${url}:`, error);
         }
     }
 });
