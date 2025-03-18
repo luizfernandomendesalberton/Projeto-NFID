@@ -3,5 +3,10 @@
         "numeroSerie": "15",
         "local": "Clinica de tratamento",
         "funcionario": "Foguinho"
+    },
+    {
+        "numeroSerie": "25",
+        "local": "departamento de tratamentos",
+        "funcionario": "Gabriel"
     }
 ]

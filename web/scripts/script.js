@@ -25,6 +25,7 @@ document.getElementById('loginForm')?.addEventListener('submit', async function 
             if (resposta.ok) {
                 const resultado = await resposta.json();
                 alert(resultado.mensagem);
+                localStorage.setItem('funcionarioAtual', username);
                 window.location.href = 'cadastro-equipamento.html';
                 return;
             }
@@ -68,13 +69,27 @@ document.getElementById('cadastroUsuarioForm')?.addEventListener('submit', async
     }
 });
 
+document.addEventListener('DOMContentLoaded', function () {
+    const funcionarioSpan = document.getElementById('funcionario');
+    
+    if (funcionarioSpan) {
+        const funcionarioAtual = localStorage.getItem('funcionarioAtual');
+
+        if (funcionarioAtual) {
+            funcionarioSpan.textContent = funcionarioAtual;
+            console.log("Funcionário preenchido:", funcionarioAtual);
+        } else {
+            alert("Erro: Usuário não encontrado. Faça login novamente.");
+        }
+    }
+});
+
 // Função para cadastrar equipamentos
 document.getElementById('cadastroForm')?.addEventListener('submit', async function (event) {
     event.preventDefault();
-
     const numeroSerie = document.getElementById('numeroSerie').value;
     const local = document.getElementById('local').value;
-    const funcionario = document.getElementById('funcionario').textContent;    
+    const funcionario = localStorage.getItem('funcionarioAtual');  
 
     const equipamento = { numeroSerie, local, funcionario };
     const urls = [
