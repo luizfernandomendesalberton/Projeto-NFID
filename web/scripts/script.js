@@ -1,74 +1,81 @@
 import { excluirEquipamento } from "./task.js";
 
-// Verifica se já existem usuários no LocalStorage, caso contrário, inicializa com um usuário padrão
-if (!localStorage.getItem('users')) {
-    const defaultUser = [{ username: "admin", password: "admin123" }];
-    localStorage.setItem('users', JSON.stringify(defaultUser));
-}
-
-// Função para verificar o login
-document.getElementById('loginForm')?.addEventListener('submit', function(event) {
+// Função para realizar o Login com base nos Usuários Cadastrados
+document.getElementById('loginForm')?.addEventListener('submit', async function(event) {
     event.preventDefault();
+
     const username = document.getElementById('username').value;
     const password = document.getElementById('password').value;
 
-    const users = JSON.parse(localStorage.getItem('users'));
-    const user = users.find(u => u.username === username && u.password === password);
+    const loginData = { username, password };
 
-    if (user) {
-        window.location.href = 'cadastro-equipamento.html';
-    } else {
-        alert('Usuário ou senha incorretos!');
+    try {
+        const resposta = await fetch('http://127.0.0.1:5000/login', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(loginData)
+        });
+
+        const resultado = await resposta.json();
+        
+        if (resposta.ok) {
+            alert(resultado.mensagem);
+            window.location.href = 'cadastro-equipamento.html';
+        } else {
+            alert(resultado.mensagem);
+        }
+    } catch (erro) {
+        console.error('Erro ao tentar logar:', erro);
+        alert('Erro ao conectar com o servidor.');
     }
 });
 
 // Função para cadastrar novos usuários
-document.getElementById('cadastroUsuarioForm')?.addEventListener('submit', function(event) {
+document.getElementById('cadastroUsuarioForm')?.addEventListener('submit', async function(event) {
     event.preventDefault();
+
     const novoUsername = document.getElementById('novoUsername').value;
     const novaSenha = document.getElementById('novaSenha').value;
 
-    const users = JSON.parse(localStorage.getItem('users'));
-    const userExists = users.some(u => u.username === novoUsername);
+    const newUser = { username: novoUsername, password: novaSenha };
+    console.log("dados: " + newUser);
+    
 
-    if (userExists) {
-        alert('Usuário já cadastrado!');
-        return;
-    }
+    const resposta = await fetch('http://127.0.0.1:5000/cadastro-usuario', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(newUser)
+    });
 
-    const newUser = {
-        username: novoUsername,
-        password: novaSenha
-    };
-
-    // Adiciona o novo usuário à lista
-    users.push(newUser);
-    localStorage.setItem('users', JSON.stringify(users));
-
-    alert('Usuário cadastrado com sucesso!');
+    const resultado = await resposta.json();
+    console.log(resultado);
+    
+    alert(resultado.mensagem);
 });
 
+// Ainda não Funcional V
+
 // Função para cadastrar equipamentos
-document.getElementById('cadastroForm')?.addEventListener('submit', function(event) {
+document.getElementById('cadastroForm')?.addEventListener('submit', async function(event) {
     event.preventDefault();
+
     const numeroSerie = document.getElementById('numeroSerie').value;
     const local = document.getElementById('local').value;
     const funcionario = document.getElementById('funcionario').value;
 
-    const equipamento = {
-        numeroSerie,
-        local,
-        funcionario
-    };
+    const equipamento = { numeroSerie, local, funcionario };
 
-    //Salva no LocalStorage
-    let equipamentos = JSON.parse(localStorage.getItem('equipamentos')) || [];
-    equipamentos.push(equipamento);
-    localStorage.setItem('equipamentos', JSON.stringify(equipamentos));
+    const resposta = await fetch('http://127.0.0.1:5000/cadastrar-material', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(equipamento)
+    });
 
-    alert('Equipamento cadastrado com sucesso!');
+    const resultado = await resposta.json();
+    alert(resultado.mensagem);
     document.getElementById('cadastroForm').reset();
 });
+
 
 // Função para carregar o estoque
 document.addEventListener('DOMContentLoaded', function() {
