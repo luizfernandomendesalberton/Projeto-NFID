@@ -55,10 +55,6 @@ def login():
 
     return jsonify({"mensagem": "Usuário ou senha incorretos!"}), 401
 
-
-# Ainda não Funcional V
-
-
 # 🔹 Rota para cadastrar material
 @app.route('/cadastrar-equipamento', methods=['POST'])
 def cadastrar_material():
@@ -90,17 +86,39 @@ def get_funcionarios():
 
     return jsonify([])
 
-# 🔹 Rota para obter os materiais
-@app.route('/materiais', methods=['GET'])
-def get_materiais():
-    mat_path = os.path.join(DATA_DIR, 'material.json')
+# Rota para obter o estoque de materiais
+@app.route('/estoque', methods=['GET'])
+def obter_estoque():
+    material_path = os.path.join(DATA_DIR, 'material.json')
 
-    if os.path.exists(mat_path):
-        with open(mat_path, 'r', encoding='utf-8') as f:
-            materiais = json.load(f)
-        return jsonify(materiais)
+    if not os.path.exists(material_path):
+        return jsonify([])
 
-    return jsonify([])
+    with open(material_path, 'r', encoding='utf-8') as f:
+        materiais = json.load(f)
+
+    return jsonify(materiais)
+
+# Rota para excluir um material pelo ID
+@app.route('/excluir-material/<numeroSerie>', methods=['DELETE'])
+def excluir_material(numeroSerie):
+    material_path = os.path.join(DATA_DIR, 'material.json')
+
+    if not os.path.exists(material_path):
+        return jsonify({"mensagem": "Material não encontrado"}), 404
+
+    with open(material_path, 'r', encoding='utf-8') as f:
+        materiais = json.load(f)
+
+    materiais = [m for m in materiais if m.get("numeroSerie") != numeroSerie]
+
+    try:
+        with open(material_path, 'w', encoding='utf-8') as f:
+            json.dump(materiais, f, indent=4)
+    except Exception as e:
+        return jsonify({"mensagem": "Erro ao atualizar o JSON"}), 500
+
+    return jsonify({"mensagem": "Material excluído com sucesso!"})
 
 # 🔹 Rota para servir arquivos da pasta assets (imagens, ícones, vídeos)
 @app.route('/assets/<path:filename>')

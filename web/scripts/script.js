@@ -1,7 +1,7 @@
-import { excluirEquipamento } from "./task.js";
+import { excluirMaterial } from "./task.js";
 
 // Função para realizar o Login com base nos Usuários Cadastrados
-document.getElementById('loginForm')?.addEventListener('submit', async function(event) {
+document.getElementById('loginForm')?.addEventListener('submit', async function (event) {
     event.preventDefault();
 
     const username = document.getElementById('username').value;
@@ -17,7 +17,7 @@ document.getElementById('loginForm')?.addEventListener('submit', async function(
         });
 
         const resultado = await resposta.json();
-        
+
         if (resposta.ok) {
             alert(resultado.mensagem);
             window.location.href = 'cadastro-equipamento.html';
@@ -31,7 +31,7 @@ document.getElementById('loginForm')?.addEventListener('submit', async function(
 });
 
 // Função para cadastrar novos usuários
-document.getElementById('cadastroUsuarioForm')?.addEventListener('submit', async function(event) {
+document.getElementById('cadastroUsuarioForm')?.addEventListener('submit', async function (event) {
     event.preventDefault();
 
     const novoUsername = document.getElementById('novoUsername').value;
@@ -39,7 +39,7 @@ document.getElementById('cadastroUsuarioForm')?.addEventListener('submit', async
 
     const newUser = { username: novoUsername, password: novaSenha };
     console.log("dados: " + newUser);
-    
+
 
     const resposta = await fetch('http://127.0.0.1:5000/cadastro-usuario', {
         method: 'POST',
@@ -49,14 +49,12 @@ document.getElementById('cadastroUsuarioForm')?.addEventListener('submit', async
 
     const resultado = await resposta.json();
     console.log(resultado);
-    
+
     alert(resultado.mensagem);
 });
 
-// Ainda não Funcional V
-
 // Função para cadastrar equipamentos
-document.getElementById('cadastroForm')?.addEventListener('submit', async function(event) {
+document.getElementById('cadastroForm')?.addEventListener('submit', async function (event) {
     event.preventDefault();
 
     const numeroSerie = document.getElementById('numeroSerie').value;
@@ -65,7 +63,7 @@ document.getElementById('cadastroForm')?.addEventListener('submit', async functi
 
     const equipamento = { numeroSerie, local, funcionario };
 
-    const resposta = await fetch('http://127.0.0.1:5000/cadastrar-material', {
+    const resposta = await fetch('http://127.0.0.1:5000/cadastrar-equipamento', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(equipamento)
@@ -76,25 +74,38 @@ document.getElementById('cadastroForm')?.addEventListener('submit', async functi
     document.getElementById('cadastroForm').reset();
 });
 
-
-// Função para carregar o estoque
-document.addEventListener('DOMContentLoaded', function() {
+// Função para carregar o estoque do servidor
+document.addEventListener('DOMContentLoaded', async function () {
     const estoqueTable = document.getElementById('estoqueTable')?.getElementsByTagName('tbody')[0];
     if (estoqueTable) {
-        const equipamentos = JSON.parse(localStorage.getItem('equipamentos')) || [];
-        equipamentos.forEach((equipamento, index) => {
-            const row = estoqueTable.insertRow();
-            row.insertCell(0).textContent = equipamento.numeroSerie;
-            row.insertCell(1).textContent = equipamento.local;
-            row.insertCell(2).textContent = equipamento.funcionario;
+        try {
+            const resposta = await fetch('http://127.0.0.1:5000/estoque');
+            if (!resposta.ok) throw new Error('Erro ao buscar estoque');
 
-            // Botão de exclusão
-            const cellAcoes = row.insertCell(3);
-            const deleteBtn = document.createElement('button');
-            deleteBtn.textContent = 'Excluir';
-            deleteBtn.classList.add('delete-btn');
-            deleteBtn.addEventListener('click', () => excluirEquipamento(index));
-            cellAcoes.appendChild(deleteBtn);
-        });
+            const materiais = await resposta.json();
+
+            materiais.forEach((material, index) => {
+                const row = estoqueTable.insertRow();
+                row.insertCell(0).textContent = material.numeroSerie;
+                row.insertCell(1).textContent = material.local;
+                row.insertCell(2).textContent = material.funcionario;
+
+                // Botão de exclusão
+                const cellAcoes = row.insertCell(3);
+                const deleteBtn = document.createElement('button');
+                deleteBtn.textContent = 'Excluir';
+                deleteBtn.classList.add('delete-btn');
+                deleteBtn.setAttribute('data-id', material.numeroSerie);
+                cellAcoes.appendChild(deleteBtn);
+
+                deleteBtn.addEventListener('click', function () {
+                    const id = this.getAttribute('data-id');
+                    console.log(`ID do material a excluir: ${id}`);
+                    excluirMaterial(id);
+                });
+            });
+        } catch (error) {
+            console.error('Erro ao carregar estoque:', error);
+        }
     }
 });
