@@ -11,6 +11,13 @@ button:hover {
     justify-content: space-between;
 }
 
+#funcionario {
+    margin-bottom: 10px;
+    display: block;
+    width: 100%;
+    text-align: left;
+}
+
 #cadastrarF, #entrarFuncionario, #estoqueF {
     width: 150px;
 }

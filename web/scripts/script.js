@@ -1,5 +1,7 @@
 import { excluirMaterial } from "./task.js";
 
+let funcionarioAtual;
+
 // Função para realizar o Login com base nos Usuários Cadastrados
 document.getElementById('loginForm')?.addEventListener('submit', async function (event) {
     event.preventDefault();
@@ -25,6 +27,7 @@ document.getElementById('loginForm')?.addEventListener('submit', async function 
             if (resposta.ok) {
                 const resultado = await resposta.json();
                 alert(resultado.mensagem);
+                funcionarioAtual = username;
                 window.location.href = 'cadastro-equipamento.html';
                 return;
             }
@@ -32,6 +35,7 @@ document.getElementById('loginForm')?.addEventListener('submit', async function 
             console.warn(`Falha ao conectar em ${url}:`, erro);
         }
     }
+    alert('Erro ao fazer Login!');
 });
 
 // Função para cadastrar novos usuários
@@ -73,7 +77,10 @@ document.getElementById('cadastroForm')?.addEventListener('submit', async functi
 
     const numeroSerie = document.getElementById('numeroSerie').value;
     const local = document.getElementById('local').value;
-    const funcionario = document.getElementById('funcionario').value;
+    document.getElementById('funcionario').textContent = usuarioLogado;
+    const funcionario = usuarioLogado;
+    console.log(funcionario);
+    
 
     const equipamento = { numeroSerie, local, funcionario };
     const urls = [
