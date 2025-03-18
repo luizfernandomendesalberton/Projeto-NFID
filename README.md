@@ -24,3 +24,5 @@ pip install flask flask-cors
 ```bash
 python server.py
 ```
+### 3️⃣ Como Parar o Programa?
+Para finalizar a execução do programa, basta dar "Control + c" no terminal.
