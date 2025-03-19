@@ -1,12 +1,22 @@
 [
     {
-        "numeroSerie": "15",
+        "numeroSerie": "1",
+        "local": "departamento de tratamentos",
+        "funcionario": "Gabriel"
+    },
+    {
+        "numeroSerie": "2",
         "local": "Clinica de tratamento",
-        "funcionario": "Foguinho"
+        "funcionario": "Gabriel"
     },
     {
         "numeroSerie": "25",
-        "local": "departamento de tratamentos",
+        "local": "Clinica de tratamento",
+        "funcionario": "Gabriel"
+    },
+    {
+        "numeroSerie": "20",
+        "local": "Clinica de tratamento",
         "funcionario": "Gabriel"
     }
 ]

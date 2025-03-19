@@ -11,18 +11,18 @@ button:hover {
     justify-content: space-between;
 }
 
-#funcionario {
-    margin-bottom: 10px;
-    display: block;
-    width: 100%;
-    text-align: left;
+.usuarioAtual {
+    position: absolute;
+    top: 60px;
+    left: 50px;
+    color: white;
 }
 
 #cadastrarF, #entrarFuncionario, #estoqueF {
     width: 150px;
 }
 
-#estoqueF {
+#estoqueF, #UsoEquipo {
     padding: 7px;
     color: #fff;
     border: none;
@@ -30,6 +30,10 @@ button:hover {
     cursor: pointer;
     transition: transform 0.3s ease, background 0.3s ease;
     background: linear-gradient(135deg, #6a11cb, #2575fc);
+}
+
+#UsoEquipo {
+    width: 100%;
 }
 
 #estoqueF:hover {
@@ -51,4 +55,18 @@ button:hover {
 #voltarLogin:hover, #sair:hover {
     background: linear-gradient(135deg, #ff6262, #ff2222);
     transform: translateY(-2px);
+}
+
+#pagina {
+    display: flex;
+    flex-direction: row;
+}
+
+#campo {
+    width: 300px;
+    height: 110px;
+    margin-bottom: 10px;
+    border: 2px solid #dddddd;
+    border-radius: 15px;
+    background-color: white;
 }

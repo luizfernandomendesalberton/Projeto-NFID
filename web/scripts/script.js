@@ -26,7 +26,7 @@ document.getElementById('loginForm')?.addEventListener('submit', async function 
                 const resultado = await resposta.json();
                 alert(resultado.mensagem);
                 localStorage.setItem('funcionarioAtual', username);
-                window.location.href = 'cadastro-equipamento.html';
+                window.location.href = 'busca-cadastro.html';
                 return;
             }
         } catch (erro) {
@@ -89,12 +89,13 @@ document.getElementById('cadastroForm')?.addEventListener('submit', async functi
     event.preventDefault();
     const numeroSerie = document.getElementById('numeroSerie').value;
     const local = document.getElementById('local').value;
-    const funcionario = localStorage.getItem('funcionarioAtual');  
+    const funcionario = localStorage.getItem('funcionarioAtual');
+    
 
     const equipamento = { numeroSerie, local, funcionario };
     const urls = [
-        'http://127.0.0.1:5000/cadastrar-equipamento',
-        'https://b188-177-74-79-181.ngrok-free.app/cadastrar-equipamento'
+        'http://127.0.0.1:5000/busca-cadastro',
+        'https://b188-177-74-79-181.ngrok-free.app/busca-cadastro'
     ];
 
     for (const url of urls) {
@@ -119,14 +120,14 @@ document.getElementById('cadastroForm')?.addEventListener('submit', async functi
     alert('Erro ao conectar com o servidor.');
 });
 
-// Função para carregar o estoque do servidor
+// Função para carregar o equipamento do servidor
 document.addEventListener('DOMContentLoaded', async function () {
-    const estoqueTable = document.getElementById('estoqueTable')?.getElementsByTagName('tbody')[0];
-    if (!estoqueTable) return;
+    const equipamentoTable = document.getElementById('equipamentoTable')?.getElementsByTagName('tbody')[0];
+    if (!equipamentoTable) return;
 
     const urls = [
-        'http://127.0.0.1:5000/estoque',
-        'https://b188-177-74-79-181.ngrok-free.app/estoque'
+        'http://127.0.0.1:5000/equipamento',
+        'https://b188-177-74-79-181.ngrok-free.app/equipamento'
     ];
 
     for (const url of urls) {
@@ -134,10 +135,10 @@ document.addEventListener('DOMContentLoaded', async function () {
             const resposta = await fetch(url);
             if (resposta.ok) {
                 const materiais = await resposta.json();
-                estoqueTable.innerHTML = '';
+                equipamentoTable.innerHTML = '';
 
                 materiais.forEach((material) => {
-                    const row = estoqueTable.insertRow();
+                    const row = equipamentoTable.insertRow();
                     row.insertCell(0).textContent = material.numeroSerie;
                     row.insertCell(1).textContent = material.local;
                     row.insertCell(2).textContent = material.funcionario;
@@ -160,7 +161,7 @@ document.addEventListener('DOMContentLoaded', async function () {
                 return;
             }
         } catch (error) {
-            console.warn(`Erro ao carregar estoque de ${url}:`, error);
+            console.warn(`Erro ao carregar equipamento de ${url}:`, error);
         }
     }
 });

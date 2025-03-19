@@ -56,7 +56,7 @@ def login():
     return jsonify({"mensagem": "Usuário ou senha incorretos!"}), 401
 
 # 🔹 Rota para cadastrar material
-@app.route('/cadastrar-equipamento', methods=['POST'])
+@app.route('/busca-cadastro', methods=['POST'])
 def cadastrar_material():
     novo_material = request.json
     materiais = []
@@ -86,9 +86,9 @@ def get_funcionarios():
 
     return jsonify([])
 
-# Rota para obter o estoque de materiais
-@app.route('/estoque', methods=['GET'])
-def obter_estoque():
+# Rota para obter o equipamento de materiais
+@app.route('/equipamento', methods=['GET'])
+def obter_equipamento():
     material_path = os.path.join(DATA_DIR, 'material.json')
 
     if not os.path.exists(material_path):
