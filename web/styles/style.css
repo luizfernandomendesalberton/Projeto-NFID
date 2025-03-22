@@ -25,6 +25,16 @@ body {
     text-align: center;
     animation: fadeIn 0.5s ease-in-out;
 }
+.containerbuscar {
+    height: 150px;
+    background: rgba(255, 255, 255, 0.95);
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    margin-right: 20px;
+    text-align: center;
+    animation: fadeIn 0.5s ease-in-out;
+}
 
 @keyframes fadeIn {
     from {

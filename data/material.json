@@ -18,5 +18,10 @@
         "numeroSerie": "20",
         "local": "Clinica de tratamento",
         "funcionario": "Gabriel"
+    },
+    {
+        "numeroSerie": "1000",
+        "local": "enfermaria",
+        "funcionario": "luiz fernando"
     }
 ]
