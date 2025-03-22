@@ -1,0 +1,122 @@
+/* Reset básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #6a11cb, #2575fc);
+    color: #333;
+    display: flex;
+    background-image: url('/assets/imagens/fundoHospital.jpg');
+    background-size: cover;
+    image-rendering: crisp-edges;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    padding: 20px;
+}
+
+/* Container principal */
+.container {
+    background: rgba(255, 255, 255, 0.95);
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 600px;
+    text-align: left;
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+h1 {
+    font-size: 24px;
+    color: #6a11cb;
+    margin-bottom: 10px;
+}
+
+.gerado-em {
+    font-size: 14px;
+    color: #555;
+    margin-bottom: 20px;
+}
+
+.equipamento {
+    background: #f9f9f9;
+    padding: 15px;
+    border-radius: 10px;
+    margin-bottom: 15px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+}
+
+.equipamento h2 {
+    font-size: 18px;
+    color: #2575fc;
+    margin-bottom: 10px;
+}
+
+.equipamento p {
+    font-size: 14px;
+    color: #555;
+    margin-bottom: 5px;
+}
+
+/* Estilos para os status */
+.status {
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 12px;
+    font-weight: 500;
+    text-transform: uppercase;
+}
+
+.em-uso {
+    background-color: #ffcc00;
+    color: #333;
+}
+
+.manutencao {
+    background-color: #ff4d4d;
+    color: #fff;
+}
+
+.disponivel {
+    background-color: #28a745;
+    color: #fff;
+}
+
+/* Responsividade */
+@media (max-width: 480px) {
+    body {
+        padding: 10px;
+    }
+
+    .container {
+        padding: 20px;
+    }
+
+    h1 {
+        font-size: 20px;
+    }
+
+    .equipamento h2 {
+        font-size: 16px;
+    }
+
+    .equipamento p {
+        font-size: 12px;
+    }
+}
