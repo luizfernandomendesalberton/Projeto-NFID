@@ -22,7 +22,7 @@ button:hover {
     width: 150px;
 }
 
-#estoqueF, #UsoEquipo {
+#estoqueF, #UsoEquipo, #buscarEquip {
     padding: 7px;
     color: #fff;
     border: none;

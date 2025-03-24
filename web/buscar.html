@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Relatório de Equipamentos</title>
+    <link rel="stylesheet" href="./styles/style.css">
+    <link rel="stylesheet" href="./styles/busca.css">
+    <link rel="stylesheet" href="./styles/login-cadastro.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <p class="usuarioAtual">Funcionário: <span type="text" id="funcionario" name="funcionario" required></span></p>
+    <div class="container filtro">
+        <h2>Filtros</h2>
+        <div class="search-filter">
+            <p> ID: <input type="text" id="searchInput" placeholder="13"></p>
+            <p>Status:
+                <select id="filterStatus">
+                    <option value="all">Buscar por Status</option>
+                    <option value="em-uso">Em Uso</option>
+                    <option value="manutencao">Manutenção</option>
+                    <option value="disponivel">Disponível</option>
+                </select>
+            </p>
+            <p> Nome: <input type="text" id="searchNome" placeholder="respirador"></p>
+            <button id="searchButton">Buscar</button>
+        </div>
+    </div>
+    <div class="container equipamentos">
+        <table id="equipamentoTable">
+            <h1>Equipamentos</h1>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nome</th>
+                    <th>Status</th>
+                    <th>Local</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Os dados serão preenchidos via JavaScript -->
+            </tbody>
+    </div>
+    <script type="module" src="./scripts/script.js"></script>
+</body>
+
+</html>

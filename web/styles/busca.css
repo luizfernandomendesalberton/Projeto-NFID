@@ -1,0 +1,35 @@
+
+.filtro {
+    position: absolute;
+    left: 20px;
+    top: 100px;
+    width: 400px;
+    padding-top: 10px;
+}
+
+.search-filter p {
+    text-align: end;
+}
+
+.search-filter input {
+    max-width: 80%;
+    text-align: center;
+}
+
+select {
+    width: 80%;
+    padding: 12px;
+    margin-bottom: 20px;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    font-size: 14px;
+    transition: border-color 0.3s ease;
+}
+
+.equipamentos {
+    width: 900px;
+    height: 530px;
+    position: absolute;
+    top: 50px;
+    left: 450px;
+}
