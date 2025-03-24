@@ -7,8 +7,31 @@
 
 .equipamentos {
     position: absolute;
-    top: 90px;
+    top: 30px;
     width: 100%;
+    height: 560px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.tabela-container {
+    flex-grow: 1;
+    overflow-y: auto;
+    max-height: 450px;
+    position: relative;
+    top: 20px;
+}
+
+#equipamentoTable {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+#equipamentoTable th, #equipamentoTable td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
 }
 
 .sairEstoque {
@@ -46,7 +69,6 @@ a{
 table {
     width: 100%;
     border-collapse: collapse;
-    margin-top: 20px;
     background: #fff;
     border-radius: 8px;
     overflow: hidden;

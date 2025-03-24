@@ -71,7 +71,7 @@ document.getElementById('cadastroUsuarioForm')?.addEventListener('submit', async
 
 document.addEventListener('DOMContentLoaded', function () {
     const funcionarioSpan = document.getElementById('funcionario');
-    
+
     if (funcionarioSpan) {
         const funcionarioAtual = localStorage.getItem('funcionarioAtual');
 
@@ -90,7 +90,7 @@ document.getElementById('cadastroForm')?.addEventListener('submit', async functi
     const numeroSerie = document.getElementById('numeroSerie').value;
     const local = document.getElementById('local').value;
     const funcionario = localStorage.getItem('funcionarioAtual');
-    
+
 
     const equipamento = { numeroSerie, local, funcionario };
     const urls = [
@@ -165,3 +165,127 @@ document.addEventListener('DOMContentLoaded', async function () {
         }
     }
 });
+
+document.getElementById('cadastroNovos')?.addEventListener('submit', async function (event) {
+    event.preventDefault();
+
+    const nomeEquipamento = document.getElementById('nomeEquipamento').value;
+    const status = document.getElementById('status').value;
+
+    if (status === "all") {
+        alert("Por favor, selecione um status válido.");
+        return;
+    }
+
+    const urls = [
+        'http://127.0.0.1:5000/estoque',
+        'https://b188-177-74-79-181.ngrok-free.app/estoque'
+    ];
+
+    let ultimoId = 0;
+
+    for (const url of urls) {
+        try {
+            const response = await fetch(url);
+            if (response.ok) {
+                const estoque = await response.json();
+                ultimoId = estoque.length > 0 ? estoque[estoque.length - 1].id : 0;
+                break;
+            }
+        } catch (error) {
+            console.warn(`Erro ao buscar estoque de ${url}:`, error);
+        }
+    }
+
+    const novoId = ultimoId + 1;
+    const novoEquipamento = { id: novoId, nome: nomeEquipamento, status };
+
+    for (const url of urls) {
+        try {
+            const salvarResponse = await fetch(url, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(novoEquipamento)
+            });
+
+            if (salvarResponse.ok) {
+                alert("Equipamento cadastrado com sucesso!");
+                document.getElementById('cadastroNovos').reset();
+                return;
+            }
+        } catch (error) {
+            console.warn(`Erro ao cadastrar equipamento em ${url}:`, error);
+        }
+    }
+});
+
+document.addEventListener('DOMContentLoaded', async function () {
+    const equipamentoTable = document.getElementById('equipamentoTable')?.getElementsByTagName('tbody')[0];
+    if (!equipamentoTable) return;
+
+    const urls = [
+        'http://127.0.0.1:5000/estoque',
+        'https://b188-177-74-79-181.ngrok-free.app/estoque'
+    ];
+
+    for (const url of urls) {
+        try {
+            const resposta = await fetch(url);
+            if (resposta.ok) {
+                const equipamentos = await resposta.json();
+                equipamentoTable.innerHTML = ''; // Limpa a tabela antes de preencher
+
+                equipamentos.forEach((equip) => {
+                    const row = equipamentoTable.insertRow();
+                    row.insertCell(0).textContent = equip.id;
+                    row.insertCell(1).textContent = equip.nome;
+                    row.insertCell(2).textContent = equip.status;
+
+                    // Botão de exclusão
+                    const cellAcoes = row.insertCell(3);
+                    const deleteBtn = document.createElement('button');
+                    deleteBtn.textContent = 'Excluir';
+                    deleteBtn.classList.add('delete-btn');
+                    deleteBtn.setAttribute('data-id', equip.id);
+                    cellAcoes.appendChild(deleteBtn);
+
+                    deleteBtn.addEventListener('click', function () {
+                        const id = this.getAttribute('data-id');
+                        console.log(`ID do equipamento a excluir: ${id}`);
+                        excluirEquipamento(id);
+                    });
+                });
+
+                return; // Sai do loop se conseguir os dados de uma URL válida
+            }
+        } catch (error) {
+            console.warn(`Erro ao carregar estoque de ${url}:`, error);
+        }
+    }
+});
+
+// Função para excluir um equipamento
+async function excluirEquipamento(id) {
+    const urls = [
+        'http://127.0.0.1:5000/estoque',
+        'https://b188-177-74-79-181.ngrok-free.app/estoque'
+    ];
+
+    for (const url of urls) {
+        try {
+            const resposta = await fetch(`${url}/${id}`, {
+                method: 'DELETE'
+            });
+
+            if (resposta.ok) {
+                alert("Equipamento excluído com sucesso!");
+                location.reload(); // Atualiza a página para refletir a mudança
+                return;
+            }
+        } catch (error) {
+            console.warn(`Erro ao excluir equipamento de ${url}:`, error);
+        }
+    }
+
+    alert("Erro ao excluir equipamento.");
+}

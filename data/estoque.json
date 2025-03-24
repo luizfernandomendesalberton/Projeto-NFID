@@ -1,0 +1,52 @@
+[
+    {
+        "id": 1,
+        "nome": "Respirador Pulmonar",
+        "status": "novo"
+    },
+    {
+        "id": 2,
+        "nome": "Monitor Cardíaco",
+        "status": "novo"
+    },
+    {
+        "id": 3,
+        "nome": "Bomba de Infusão",
+        "status": "novo"
+    },
+    {
+        "id": 4,
+        "nome": "Eletrocardiógrafo",
+        "status": "novo"
+    },
+    {
+        "id": 5,
+        "nome": "Desfibrilador",
+        "status": "novo"
+    },
+    {
+        "id": 6,
+        "nome": "Oxímetro de Pulso",
+        "status": "novo"
+    },
+    {
+        "id": 7,
+        "nome": "Ventilador Mecânico",
+        "status": "novo"
+    },
+    {
+        "id": 8,
+        "nome": "Termômetro Digital",
+        "status": "novo"
+    },
+    {
+        "id": 9,
+        "nome": "Aparelho de Ultrassom",
+        "status": "novo"
+    },
+    {
+        "id": 10,
+        "nome": "Seringa Automática",
+        "status": "novo"
+    }
+]

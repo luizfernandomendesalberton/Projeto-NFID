@@ -11,24 +11,23 @@
 </head>
 
 <body>
-    <p class="usuarioAtual">Funcionário: <span type="text" id="funcionario" name="funcionario" required></span></p>
     <div class="container equipamentos">
         <a id="sair" class="sairEstoque" href="busca-cadastro.html" style="margin-top: 10px;">Voltar</a>
-        <table id="equipamentoTable">
-            <h1>Equipamentos</h1>
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Nome</th>
-                    <th>Status</th>
-                    <th></th>
-                </tr>
-            </thead>
-            <tbody>
-                <!-- Os dados serão preenchidos via JavaScript -->
-            </tbody>
+        <h1>Equipamentos</h1>
+        <div class="tabela-container">
+            <table id="equipamentoTable">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nome</th>
+                        <th>Status</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
     </div>
-
     <script type="module" src="./scripts/script.js"></script>
 </body>
 

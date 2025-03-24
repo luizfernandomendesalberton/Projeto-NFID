@@ -74,6 +74,44 @@ def cadastrar_material():
 
     return jsonify({"mensagem": "Material cadastrado com sucesso!"})
 
+# 🔹 Rota para cadastrar equipamento
+@app.route('/estoque', methods=['POST'])
+def cadastrar_equipamento():
+    novo_equipamento = request.json
+    equipamentos = []
+
+    mat_path = os.path.join(DATA_DIR, 'estoque.json')
+
+    if os.path.exists(mat_path):
+        with open(mat_path, 'r', encoding='utf-8') as f:
+            try:
+                equipamentos = json.load(f)
+            except json.JSONDecodeError:
+                equipamentos = []
+
+    ultimo_id = equipamentos[-1]["id"] if equipamentos else 0
+    novo_equipamento["id"] = ultimo_id + 1
+
+    equipamentos.append(novo_equipamento)
+
+    with open(mat_path, 'w', encoding='utf-8') as f:
+        json.dump(equipamentos, f, indent=4, ensure_ascii=False)
+
+    return jsonify({"mensagem": "Equipamento cadastrado com sucesso!", "id": novo_equipamento["id"]}), 201
+
+# 🔹 Rota para listar equipamentos
+@app.route('/estoque', methods=['GET'])
+def listar_equipamentos():
+    mat_path = os.path.join(DATA_DIR, 'estoque.json')
+    if os.path.exists(mat_path):
+        with open(mat_path, 'r', encoding='utf-8') as f:
+            try:
+                equipamentos = json.load(f)
+                return jsonify(equipamentos), 200
+            except json.JSONDecodeError:
+                return jsonify([]), 200
+    return jsonify([]), 200
+
 # 🔹 Rota para obter os funcionários
 @app.route('/funcionarios', methods=['GET'])
 def get_funcionarios():

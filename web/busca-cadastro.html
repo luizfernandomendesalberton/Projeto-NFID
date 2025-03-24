@@ -16,13 +16,18 @@
         <div class="container novos">
             <h2>Cadastrar Equipamentos</h2>
             <form id="cadastroNovos">
-                <label for="temp">Número de Série:</label>
-                <input type="text" id="temp" name="temp" required>
+                <label for="nomeEquipamento">Nome:</label>
+                <input type="text" id="nomeEquipamento" name="nomeEquipamento" required>
 
                 <label for="status">Status:</label>
-                <input type="text" id="status" name="status" required>
+                <select id="status">
+                    <option value="all">Selecionar Status</option>
+                    <option value="novoItem">Novo</option>
+                    <option value="usado">Usado</option>
+                    <option value="emprestado">Emprestado</option>
+                </select>
 
-                <button type="temp">Cadastrar</button>
+                <button type="cadastrarEquipamentoNovo">Cadastrar</button>
                 <div class="botoes">
                     <a id="sair" href="login.html">Sair</a>
                     <a id="estoqueF" href="estoque.html">Ver Estoque</a>
