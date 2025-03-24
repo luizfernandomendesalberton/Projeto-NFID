@@ -7,6 +7,13 @@
     padding-top: 10px;
 }
 
+.sairBusca {
+    position: absolute;
+    width: 60px;
+    top: 0px;
+    left: 10px;
+}
+
 .search-filter p {
     text-align: end;
 }
@@ -26,10 +33,40 @@ select {
     transition: border-color 0.3s ease;
 }
 
+#equipamentoTable {
+    width: 100%;
+}
+
 .equipamentos {
     width: 900px;
     height: 530px;
     position: absolute;
     top: 50px;
     left: 450px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    background: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+th, td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+th {
+    background: linear-gradient(135deg, #6a11cb, #2575fc);
+    color: #fff;
+    font-weight: 500;
+}
+
+tr:hover {
+    background-color: #f9f9f9;
 }

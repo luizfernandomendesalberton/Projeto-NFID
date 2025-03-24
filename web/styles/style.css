@@ -25,6 +25,7 @@ body {
     text-align: center;
     animation: fadeIn 0.5s ease-in-out;
 }
+
 .containerbuscar {
     height: 150px;
     background: rgba(255, 255, 255, 0.95);
@@ -41,6 +42,7 @@ body {
         opacity: 0;
         transform: translateY(-20px);
     }
+
     to {
         opacity: 1;
         transform: translateY(0);
@@ -120,7 +122,8 @@ a:hover {
         font-size: 20px;
     }
 
-    input, button {
+    input,
+    button {
         padding: 10px;
     }
 }

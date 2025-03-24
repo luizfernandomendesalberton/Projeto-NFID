@@ -7,11 +7,13 @@
     <title>Equipamentos Possuídos</title>
     <link rel="stylesheet" href="./styles/style.css">
     <link rel="stylesheet" href="./styles/estoque.css">
+    <link rel="stylesheet" href="./styles/login-cadastro.css">
 </head>
 
 <body>
     <p class="usuarioAtual">Funcionário: <span type="text" id="funcionario" name="funcionario" required></span></p>
     <div class="container equipamentos">
+        <a id="sair" class="sairEstoque" href="busca-cadastro.html" style="margin-top: 10px;">Voltar</a>
         <table id="equipamentoTable">
             <h1>Equipamentos</h1>
             <thead>
@@ -19,6 +21,7 @@
                     <th>ID</th>
                     <th>Nome</th>
                     <th>Status</th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody>
