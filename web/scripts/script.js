@@ -1,4 +1,4 @@
-import { excluirMaterial } from "./task.js";
+import { excluirMaterial, filtrarEquipamentos } from "./task.js";
 
 // Função para realizar o Login com base nos Usuários Cadastrados
 document.getElementById('loginForm')?.addEventListener('submit', async function (event) {
@@ -233,7 +233,7 @@ document.addEventListener('DOMContentLoaded', async function () {
             const resposta = await fetch(url);
             if (resposta.ok) {
                 const equipamentos = await resposta.json();
-                equipamentoTable.innerHTML = ''; // Limpa a tabela antes de preencher
+                equipamentoTable.innerHTML = '';
 
                 equipamentos.forEach((equip) => {
                     const row = equipamentoTable.insertRow();
@@ -256,7 +256,7 @@ document.addEventListener('DOMContentLoaded', async function () {
                     });
                 });
 
-                return; // Sai do loop se conseguir os dados de uma URL válida
+                return;
             }
         } catch (error) {
             console.warn(`Erro ao carregar estoque de ${url}:`, error);
@@ -279,13 +279,30 @@ async function excluirEquipamento(id) {
 
             if (resposta.ok) {
                 alert("Equipamento excluído com sucesso!");
-                location.reload(); // Atualiza a página para refletir a mudança
+                location.reload();
                 return;
             }
         } catch (error) {
             console.warn(`Erro ao excluir equipamento de ${url}:`, error);
         }
     }
-
     alert("Erro ao excluir equipamento.");
 }
+
+document.addEventListener('DOMContentLoaded', function () {
+    const searchInput = document.getElementById('searchInput');
+    const filterStatus = document.getElementById('filterStatus');
+    const searchNome = document.getElementById('searchNome');
+    const searchButton = document.getElementById('searchButton');
+    const equipamentoTable = document.getElementById('equipamentoTable')?.getElementsByTagName('tbody')[0];
+
+    if (!equipamentoTable) return;
+
+    searchButton.addEventListener('click', () => {
+        const idFiltro = searchInput.value.trim().toLowerCase();
+        const nomeFiltro = searchNome.value.trim().toLowerCase();
+        const statusFiltro = filterStatus.value;
+
+        filtrarEquipamentos(equipamentoTable, idFiltro, nomeFiltro, statusFiltro);
+    });
+});

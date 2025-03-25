@@ -41,14 +41,25 @@ select {
     width: 900px;
     height: 530px;
     position: absolute;
+    padding-top: 10px;
     top: 50px;
     left: 450px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.tabela-container {
+    flex-grow: 1;
+    overflow-y: auto;
+    max-height: 450px;
+    position: relative;
+    top: 20px;
 }
 
 table {
     width: 100%;
     border-collapse: collapse;
-    margin-top: 20px;
     background: #fff;
     border-radius: 8px;
     overflow: hidden;

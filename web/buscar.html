@@ -22,8 +22,11 @@
                 <select id="filterStatus">
                     <option value="all">Buscar por Status</option>
                     <option value="em-uso">Em Uso</option>
-                    <option value="manutencao">Manutenção</option>
+                    <option value="novo">Novo</option>
                     <option value="disponivel">Disponível</option>
+                    <option value="manutencao">Manutenção</option>
+                    <option value="usado">Usado</option>
+                    <option value="emprestado">Emprestado</option>
                 </select>
             </p>
             <p> Nome: <input type="text" id="searchNome" placeholder="respirador"></p>
@@ -31,19 +34,20 @@
         </div>
     </div>
     <div class="container equipamentos">
-        <table id="equipamentoTable">
-            <h1>Equipamentos</h1>
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Nome</th>
-                    <th>Status</th>
-                    <th>Local</th>
-                </tr>
-            </thead>
-            <tbody>
-                <!-- Os dados serão preenchidos via JavaScript -->
-            </tbody>
+        <h1>Equipamentos</h1>
+        <div class="tabela-container">
+            <table id="equipamentoTable">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nome</th>
+                        <th>Status</th>
+                        <th>Local</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
     </div>
     <script type="module" src="./scripts/script.js"></script>
 </body>

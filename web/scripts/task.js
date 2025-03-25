@@ -28,4 +28,23 @@ async function excluirMaterial(id) {
     alert('Falha ao excluir o material. Verifique sua conexão.');
 }
 
-export { excluirMaterial };
+function filtrarEquipamentos(tabela, idFiltro, nomeFiltro, statusFiltro) {
+    const linhas = tabela.getElementsByTagName('tr');
+
+    for (let linha of linhas) {
+        const colunas = linha.getElementsByTagName('td');
+        if (colunas.length === 0) continue;
+
+        const id = colunas[0].textContent.trim().toLowerCase();
+        const nome = colunas[1].textContent.trim().toLowerCase();
+        const status = colunas[2].textContent.trim().toLowerCase();
+
+        const idMatch = idFiltro === '' || id.includes(idFiltro);
+        const nomeMatch = nomeFiltro === '' || nome.includes(nomeFiltro);
+        const statusMatch = statusFiltro === 'all' || status === statusFiltro;
+
+        linha.style.display = (idMatch && nomeMatch && statusMatch) ? '' : 'none';
+    }
+}
+
+export { excluirMaterial, filtrarEquipamentos };
