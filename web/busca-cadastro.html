@@ -34,12 +34,6 @@
                 </div>
             </form>
         </div>
-        <div class="containerbuscar">
-            <h2>Buscar Equipamentos</h2>
-            <form id="Busca">
-                <a id="buscarEquip" href="buscar.html">buscar</a>
-            </form>
-        </div>
         <div class="container vincular">
             <h2>Usar Equipamentos</h2>
             <form id="cadastroForm">
@@ -47,10 +41,27 @@
                 <input type="text" id="numeroSerie" name="numeroSerie" required>
 
                 <label for="local">Local:</label>
-                <input type="text" id="local" name="local" required>
-
-                <button type="submit">Cadastrar</button>
+                <select id="local" name="local" required>
+                    <option value="" disabled selected>Selecione um local</option>
+                    <option value="emergencia">Emergência</option>
+                    <option value="uti">UTI</option>
+                    <option value="centro-cirurgico">Centro Cirúrgico</option>
+                    <option value="enfermaria">Enfermaria</option>
+                    <option value="laboratorio">Laboratório</option>
+                    <option value="farmacia">Farmácia</option>
+                    <option value="radiologia">Radiologia</option>
+                    <option value="consultorio">Consultório</option>
+                    <option value="recepcao">Recepção</option>
+                    <option value="almoxarifado">Almoxarifado</option>
+                </select>
+                <button type="submit" onclick="funcionarioEquipamento()">Cadastrar</button>
                 <a id="UsoEquipo" href="equipamentos.html">Ver Usos</a>
+            </form>
+        </div>
+        <div class="containerbuscar">
+            <h2>Buscar Equipamentos</h2>
+            <form id="Busca">
+                <a id="buscarEquip" href="buscar.html">buscar</a>
             </form>
         </div>
     </div>

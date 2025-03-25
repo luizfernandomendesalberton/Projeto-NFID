@@ -48,5 +48,10 @@
         "id": 10,
         "nome": "Seringa Automática",
         "status": "novo"
+    },
+    {
+        "id": 11,
+        "nome": "Teste",
+        "status": "usado"
     }
 ]

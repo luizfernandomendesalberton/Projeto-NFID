@@ -23,12 +23,12 @@
     top: 20px;
 }
 
-#equipamentoTable {
+#estoqueTable {
     width: 100%;
     border-collapse: collapse;
 }
 
-#equipamentoTable th, #equipamentoTable td {
+#estoqueTable th, #estoqueTable td {
     border: 1px solid #ddd;
     padding: 8px;
     text-align: left;

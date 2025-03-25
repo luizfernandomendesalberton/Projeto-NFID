@@ -70,7 +70,7 @@ button:hover {
     background-color: white;
 }
 
-#status {
+#status, #local {
     width: 100%;
     padding: 12px;
     margin-bottom: 20px;

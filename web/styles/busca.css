@@ -81,3 +81,17 @@ th {
 tr:hover {
     background-color: #f9f9f9;
 }
+
+.delete-btn {
+    background: #ff4d4d;
+    color: #fff;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.delete-btn:hover {
+    background: #cc0000;
+}

@@ -137,6 +137,27 @@ def obter_equipamento():
 
     return jsonify(materiais)
 
+# Rota para excluir um equipamento do Estoque pelo ID
+@app.route('/estoque/<id>', methods=['DELETE'])
+def excluir_equipamento(id):
+    material_path = os.path.join(DATA_DIR, 'estoque.json')
+
+    if not os.path.exists(material_path):
+        return jsonify({"mensagem": "Equipamento não encontrado"}), 404
+
+    with open(material_path, 'r', encoding='utf-8') as f:
+        equipamentos = json.load(f)
+
+    equipamentos = [m for m in equipamentos if m.get("id") != int(id)]
+
+    try:
+        with open(material_path, 'w', encoding='utf-8') as f:
+            json.dump(equipamentos, f, indent=4)
+    except Exception as e:
+        return jsonify({"mensagem": "Erro ao atualizar o JSON"}), 500
+
+    return jsonify({"mensagem": "Equipamento excluído com sucesso!"})
+
 # Rota para excluir um material pelo ID
 @app.route('/excluir-material/<numeroSerie>', methods=['DELETE'])
 def excluir_material(numeroSerie):
