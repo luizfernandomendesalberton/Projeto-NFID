@@ -1,4 +1,4 @@
-import { excluirMaterial, filtrarEquipamentos } from "./task.js";
+import { excluirMaterial, filtrarEquipamentos, carregarEstoque, carregarEquipamento, carregarBusca } from "./task.js";
 
 // Função para realizar o Login com base nos Usuários Cadastrados
 document.getElementById('loginForm')?.addEventListener('submit', async function (event) {
@@ -267,6 +267,7 @@ document.addEventListener('DOMContentLoaded', async function () {
 document.addEventListener('DOMContentLoaded', async function () {
     const equipamentoTable = document.getElementById('equipamentoTable');
     const estoqueTable = document.getElementById('estoqueTable');
+    const buscaTable = document.getElementById('buscaTable');
 
     if (equipamentoTable) {
         carregarEquipamento();
@@ -274,100 +275,10 @@ document.addEventListener('DOMContentLoaded', async function () {
     if (estoqueTable) {
         carregarEstoque();
     }
+    if (buscaTable) {
+        carregarBusca();
+    }
 });
-
-// Função para carregar o ESTOQUE
-async function carregarEstoque() {
-    const estoqueTable = document.getElementById('estoqueTable')?.getElementsByTagName('tbody')[0];
-    if (!estoqueTable) return;
-
-    const urls = [
-        'http://127.0.0.1:5000/estoque',
-        'https://b188-177-74-79-181.ngrok-free.app/estoque'
-    ];
-
-    for (const url of urls) {
-        try {
-            const resposta = await fetch(url);
-            if (resposta.ok) {
-                const equipamentos = await resposta.json();
-                estoqueTable.innerHTML = '';
-
-                equipamentos.forEach((equip) => {
-                    const row = estoqueTable.insertRow();
-                    row.insertCell(0).textContent = equip.id;
-                    row.insertCell(1).textContent = equip.nome;
-                    row.insertCell(2).textContent = equip.status;
-
-                    // Botão de exclusão
-                    const cellAcoes = row.insertCell(3);
-                    const deleteBtn = document.createElement('button');
-                    deleteBtn.textContent = 'Excluir';
-                    deleteBtn.classList.add('delete-btn');
-                    deleteBtn.setAttribute('data-id', equip.id);
-                    cellAcoes.appendChild(deleteBtn);
-
-                    deleteBtn.addEventListener('click', function () {
-                        const id = this.getAttribute('data-id');
-                        console.log(`ID do equipamento a excluir: ${id}`);
-                        excluirEquipamento(id);
-                    });
-                });
-
-                return;
-            }
-        } catch (error) {
-            console.warn(`Erro ao carregar estoque de ${url}:`, error);
-        }
-    }
-}
-
-// Função para carregar os EQUIPAMENTOS
-async function carregarEquipamento() {
-    const equipamentoTable = document.getElementById('equipamentoTable')?.getElementsByTagName('tbody')[0];
-    if (!equipamentoTable) return;
-
-    const urls = [
-        'http://127.0.0.1:5000/equipamento',
-        'https://b188-177-74-79-181.ngrok-free.app/equipamento'
-    ];
-
-    for (const url of urls) {
-        try {
-            const resposta = await fetch(url);
-            if (resposta.ok) {
-                const materiais = await resposta.json();
-                equipamentoTable.innerHTML = '';
-
-                materiais.forEach((material) => {
-                    const row = equipamentoTable.insertRow();
-                    row.insertCell(0).textContent = material.numeroSerie;
-                    row.insertCell(1).textContent = material.local;
-                    row.insertCell(2).textContent = material.funcionario;
-
-                    // Botão de exclusão
-                    const cellAcoes = row.insertCell(3);
-                    const deleteBtn = document.createElement('button');
-                    deleteBtn.textContent = 'Excluir';
-                    deleteBtn.classList.add('delete-btn');
-                    deleteBtn.setAttribute('data-id', material.numeroSerie);
-                    cellAcoes.appendChild(deleteBtn);
-
-                    deleteBtn.addEventListener('click', function () {
-                        const id = this.getAttribute('data-id');
-                        console.log(`ID do material a excluir: ${id}`);
-                        excluirMaterial(id);
-                    });
-                });
-
-                return;
-            }
-        } catch (error) {
-            console.warn(`Erro ao carregar equipamentos de ${url}:`, error);
-        }
-    }
-}
-
 
 // Função para excluir um equipamento
 async function excluirEquipamento(id) {
@@ -399,15 +310,15 @@ document.addEventListener('DOMContentLoaded', function () {
     const filterStatus = document.getElementById('filterStatus');
     const searchNome = document.getElementById('searchNome');
     const searchButton = document.getElementById('searchButton');
-    const equipamentoTable = document.getElementById('equipamentoTable')?.getElementsByTagName('tbody')[0];
+    const buscaTable = document.getElementById('buscaTable')?.getElementsByTagName('tbody')[0];
 
-    if (!equipamentoTable) return;
+    if (!buscaTable) return;
 
     searchButton.addEventListener('click', () => {
         const idFiltro = searchInput.value.trim().toLowerCase();
         const nomeFiltro = searchNome.value.trim().toLowerCase();
         const statusFiltro = filterStatus.value;
 
-        filtrarEquipamentos(equipamentoTable, idFiltro, nomeFiltro, statusFiltro);
+        filtrarEquipamentos(buscaTable, idFiltro, nomeFiltro, statusFiltro);
     });
 });

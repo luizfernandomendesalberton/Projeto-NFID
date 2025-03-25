@@ -47,4 +47,129 @@ function filtrarEquipamentos(tabela, idFiltro, nomeFiltro, statusFiltro) {
     }
 }
 
-export { excluirMaterial, filtrarEquipamentos };
+// Função para carregar o ESTOQUE
+async function carregarEstoque() {
+    const estoqueTable = document.getElementById('estoqueTable')?.getElementsByTagName('tbody')[0];
+    if (!estoqueTable) return;
+
+    const urls = [
+        'http://127.0.0.1:5000/estoque',
+        'https://b188-177-74-79-181.ngrok-free.app/estoque'
+    ];
+
+    for (const url of urls) {
+        try {
+            const resposta = await fetch(url);
+            if (resposta.ok) {
+                const equipamentos = await resposta.json();
+                estoqueTable.innerHTML = '';
+
+                equipamentos.forEach((equip) => {
+                    const row = estoqueTable.insertRow();
+                    row.insertCell(0).textContent = equip.id;
+                    row.insertCell(1).textContent = equip.nome;
+                    row.insertCell(2).textContent = equip.status;
+
+                    // Botão de exclusão
+                    const cellAcoes = row.insertCell(3);
+                    const deleteBtn = document.createElement('button');
+                    deleteBtn.textContent = 'Excluir';
+                    deleteBtn.classList.add('delete-btn');
+                    deleteBtn.setAttribute('data-id', equip.id);
+                    cellAcoes.appendChild(deleteBtn);
+
+                    deleteBtn.addEventListener('click', function () {
+                        const id = this.getAttribute('data-id');
+                        console.log(`ID do equipamento a excluir: ${id}`);
+                        excluirEquipamento(id);
+                    });
+                });
+
+                return;
+            }
+        } catch (error) {
+            console.warn(`Erro ao carregar estoque de ${url}:`, error);
+        }
+    }
+}
+
+// Função para carregar os EQUIPAMENTOS
+async function carregarEquipamento() {
+    const equipamentoTable = document.getElementById('equipamentoTable')?.getElementsByTagName('tbody')[0];
+    if (!equipamentoTable) return;
+
+    const urls = [
+        'http://127.0.0.1:5000/equipamento',
+        'https://b188-177-74-79-181.ngrok-free.app/equipamento'
+    ];
+
+    for (const url of urls) {
+        try {
+            const resposta = await fetch(url);
+            if (resposta.ok) {
+                const materiais = await resposta.json();
+                equipamentoTable.innerHTML = '';
+
+                materiais.forEach((material) => {
+                    const row = equipamentoTable.insertRow();
+                    row.insertCell(0).textContent = material.numeroSerie;
+                    row.insertCell(1).textContent = material.local;
+                    row.insertCell(2).textContent = material.funcionario;
+
+                    // Botão de exclusão
+                    const cellAcoes = row.insertCell(3);
+                    const deleteBtn = document.createElement('button');
+                    deleteBtn.textContent = 'Excluir';
+                    deleteBtn.classList.add('delete-btn');
+                    deleteBtn.setAttribute('data-id', material.numeroSerie);
+                    cellAcoes.appendChild(deleteBtn);
+
+                    deleteBtn.addEventListener('click', function () {
+                        const id = this.getAttribute('data-id');
+                        console.log(`ID do material a excluir: ${id}`);
+                        excluirMaterial(id);
+                    });
+                });
+
+                return;
+            }
+        } catch (error) {
+            console.warn(`Erro ao carregar equipamentos de ${url}:`, error);
+        }
+    }
+}
+
+async function carregarBusca() {
+    const buscaTable = document.getElementById('buscaTable')?.getElementsByTagName('tbody')[0];
+    if (!buscaTable) return;
+
+    const urls = [
+        'http://127.0.0.1:5000/equipamentos_completos',
+        'https://b188-177-74-79-181.ngrok-free.app/equipamentos_completos'
+    ];
+
+    for (const url of urls) {
+        try {
+            const resposta = await fetch(url);
+            if (resposta.ok) {
+                const materiais = await resposta.json();
+                buscaTable.innerHTML = '';
+
+                materiais.forEach((material) => {
+                    const row = buscaTable.insertRow();
+                    row.insertCell(0).textContent = material.id;
+                    row.insertCell(1).textContent = material.nome;
+                    row.insertCell(2).textContent = material.status;
+                    row.insertCell(3).textContent = material.local;
+                    row.insertCell(4).textContent = material.funcionario;
+                });
+
+                return;
+            }
+        } catch (error) {
+            console.warn(`Erro ao carregar equipamentos de ${url}:`, error);
+        }
+    }
+}
+
+export { excluirMaterial, filtrarEquipamentos, carregarEstoque, carregarEquipamento, carregarBusca };

@@ -3,5 +3,10 @@
         "numeroSerie": "2",
         "local": "recepcao",
         "funcionario": "Gabriel"
+    },
+    {
+        "numeroSerie": "1",
+        "local": "uti",
+        "funcionario": "Gabriel"
     }
 ]

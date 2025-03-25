@@ -137,6 +137,46 @@ def obter_equipamento():
 
     return jsonify(materiais)
 
+@app.route('/equipamentos_completos', methods=['GET'])
+def listar_equipamentos_completos():
+    estoque_path = os.path.join(DATA_DIR, 'estoque.json')
+    equipamento_path = os.path.join(DATA_DIR, 'material.json')
+
+    # Carregar dados do estoque
+    if os.path.exists(estoque_path):
+        with open(estoque_path, 'r', encoding='utf-8') as f:
+            try:
+                estoque = json.load(f)
+            except json.JSONDecodeError:
+                estoque = []
+    else:
+        estoque = []
+
+    # Carregar dados dos equipamentos
+    if os.path.exists(equipamento_path):
+        with open(equipamento_path, 'r', encoding='utf-8') as f:
+            try:
+                equipamentos = json.load(f)
+            except json.JSONDecodeError:
+                equipamentos = []
+    else:
+        equipamentos = []
+
+    # Criar a lista combinada
+    resultado = []
+    for item in estoque:
+        equipamento_info = next((eq for eq in equipamentos if eq["numeroSerie"] == item["id"]), None)
+        
+        resultado.append({
+            "id": item["id"],
+            "nome": item["nome"],
+            "status": item["status"],
+            "local": equipamento_info["local"] if equipamento_info else "Não atribuído",
+            "funcionario": equipamento_info["funcionario"] if equipamento_info else "Nenhum"
+        })
+
+    return jsonify(resultado), 200
+
 # Rota para excluir um equipamento do Estoque pelo ID
 @app.route('/estoque/<id>', methods=['DELETE'])
 def excluir_equipamento(id):
