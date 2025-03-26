@@ -144,30 +144,51 @@ async function carregarBusca() {
     if (!buscaTable) return;
 
     const urls = [
-        'http://127.0.0.1:5000/equipamentos_completos',
-        'https://b188-177-74-79-181.ngrok-free.app/equipamentos_completos'
+        'http://127.0.0.1:5000/estoque',
+        'https://b188-177-74-79-181.ngrok-free.app/estoque'
     ];
+
+    const materiais = {};
+
+    try {
+        const respostaMaterial = await fetch('http://127.0.0.1:5000/equipamentos_completos');
+        if (respostaMaterial.ok) {
+            const materiaisJson = await respostaMaterial.json();
+            materiaisJson.forEach(material => {
+                materiais[material.id] = {
+                    local: material.local || 'Não atribuído',
+                    funcionario: material.funcionario || 'Nenhum'
+                };
+            });
+        }
+    } catch (error) {
+        console.warn('Erro ao carregar equipamentos:', error);
+    }
 
     for (const url of urls) {
         try {
-            const resposta = await fetch(url);
-            if (resposta.ok) {
-                const materiais = await resposta.json();
+            const respostaEstoque = await fetch(url);
+            if (respostaEstoque.ok) {
+                const estoque = await respostaEstoque.json();
                 buscaTable.innerHTML = '';
 
-                materiais.forEach((material) => {
+                estoque.forEach((equipamento) => {
                     const row = buscaTable.insertRow();
-                    row.insertCell(0).textContent = material.id;
-                    row.insertCell(1).textContent = material.nome;
-                    row.insertCell(2).textContent = material.status;
-                    row.insertCell(3).textContent = material.local;
-                    row.insertCell(4).textContent = material.funcionario;
+                    row.insertCell(0).textContent = equipamento.id;
+                    row.insertCell(1).textContent = equipamento.nome;
+                    row.insertCell(2).textContent = equipamento.status;
+
+                    const local = materiais[equipamento.id]?.local || 'Não atribuído';
+                    const funcionario = materiais[equipamento.id]?.funcionario || 'Nenhum';
+
+                    row.insertCell(3).textContent = local;
+                    row.insertCell(4).textContent = funcionario;
                 });
 
                 return;
             }
         } catch (error) {
-            console.warn(`Erro ao carregar equipamentos de ${url}:`, error);
+            console.warn(`Erro ao carregar estoque de ${url}:`, error);
         }
     }
 }

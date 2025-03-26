@@ -140,39 +140,37 @@ def obter_equipamento():
 @app.route('/equipamentos_completos', methods=['GET'])
 def listar_equipamentos_completos():
     estoque_path = os.path.join(DATA_DIR, 'estoque.json')
-    equipamento_path = os.path.join(DATA_DIR, 'material.json')
+    material_path = os.path.join(DATA_DIR, 'material.json')
 
-    # Carregar dados do estoque
+    estoque = []
     if os.path.exists(estoque_path):
         with open(estoque_path, 'r', encoding='utf-8') as f:
             try:
                 estoque = json.load(f)
             except json.JSONDecodeError:
-                estoque = []
-    else:
-        estoque = []
+                pass
 
-    # Carregar dados dos equipamentos
-    if os.path.exists(equipamento_path):
-        with open(equipamento_path, 'r', encoding='utf-8') as f:
+    materiais = []
+    if os.path.exists(material_path):
+        with open(material_path, 'r', encoding='utf-8') as f:
             try:
-                equipamentos = json.load(f)
+                materiais = json.load(f)
             except json.JSONDecodeError:
-                equipamentos = []
-    else:
-        equipamentos = []
+                pass
 
-    # Criar a lista combinada
+    material_dict = {str(mat["numeroSerie"]): mat for mat in materiais}
+
     resultado = []
     for item in estoque:
-        equipamento_info = next((eq for eq in equipamentos if eq["numeroSerie"] == item["id"]), None)
-        
+        id_equipamento = str(item["id"])
+        equipamento_info = material_dict.get(id_equipamento, {})
+
         resultado.append({
-            "id": item["id"],
+            "id": id_equipamento,
             "nome": item["nome"],
             "status": item["status"],
-            "local": equipamento_info["local"] if equipamento_info else "Não atribuído",
-            "funcionario": equipamento_info["funcionario"] if equipamento_info else "Nenhum"
+            "local": equipamento_info.get("local", "Não atribuído"),
+            "funcionario": equipamento_info.get("funcionario", "Nenhum")
         })
 
     return jsonify(resultado), 200
