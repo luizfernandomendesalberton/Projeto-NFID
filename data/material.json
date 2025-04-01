@@ -8,5 +8,10 @@
         "numeroSerie": "1",
         "local": "consultorio",
         "funcionario": "Gabriel"
+    },
+    {
+        "numeroSerie": "5",
+        "local": "uti",
+        "funcionario": "luiz fernando"
     }
 ]
