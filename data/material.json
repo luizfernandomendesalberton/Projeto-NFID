@@ -8,5 +8,15 @@
         "numeroSerie": "1",
         "local": "consultorio",
         "funcionario": "Gabriel"
+    },
+    {
+        "numeroSerie": "5",
+        "local": "consultorio",
+        "funcionario": "luiz fernando"
+    },
+    {
+        "numeroSerie": "9",
+        "local": "radiologia",
+        "funcionario": "luiz fernando"
     }
 ]

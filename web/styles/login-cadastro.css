@@ -41,7 +41,7 @@ button:hover {
     transform: translateY(-2px);
 }
 
-#voltarLogin, #sair {
+#voltarLogin, #sair, #voltarEstoque {
     padding: 7px;
     color: #fff;
     border: none;
@@ -51,9 +51,14 @@ button:hover {
     background: linear-gradient(135deg, #ff2222, #ff6262);
 }
 
-#voltarLogin:hover, #sair:hover {
+#voltarLogin:hover, #sair:hover, #voltarEstoque:hover {
     background: linear-gradient(135deg, #ff6262, #ff2222);
     transform: translateY(-2px);
+}
+
+#voltarEstoque {
+    position: absolute;
+    top: 0px;
 }
 
 #pagina {
