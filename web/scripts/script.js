@@ -1,4 +1,4 @@
-import { excluirMaterial, filtrarEquipamentos, carregarEstoque, carregarEquipamento, carregarBusca } from "./task.js";
+import { excluirMaterial, filtrarEquipamentos, carregarEstoque, carregarEquipamento, carregarBusca, dadosUsuarios } from "./task.js";
 
 // Função para realizar o Login com base nos Usuários Cadastrados
 document.getElementById('loginForm')?.addEventListener('submit', async function (event) {
@@ -322,3 +322,5 @@ document.addEventListener('DOMContentLoaded', function () {
         filtrarEquipamentos(buscaTable, idFiltro, nomeFiltro, statusFiltro);
     });
 });
+
+dadosUsuarios();

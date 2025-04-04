@@ -193,4 +193,17 @@ async function carregarBusca() {
     }
 }
 
-export { excluirMaterial, filtrarEquipamentos, carregarEstoque, carregarEquipamento, carregarBusca };
+function dadosUsuarios() {
+    const NomeUsuario = localStorage.getItem('funcionarioAtual');
+    
+    const avatar = document.getElementById('avatar');
+    if (NomeUsuario === "Gabriel") {
+        avatar.src = './assets/imagens/gabriel.jpg';
+    } else if (NomeUsuario === "luiz fernando") {
+        avatar.src = './assets/imagens/luiz.png';
+    } else {
+        avatar.src = './assets/imagens/novo.png';
+    }
+}
+
+export { excluirMaterial, filtrarEquipamentos, carregarEstoque, carregarEquipamento, carregarBusca, dadosUsuarios };

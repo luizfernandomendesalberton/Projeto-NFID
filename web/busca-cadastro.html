@@ -11,7 +11,11 @@
 </head>
 
 <body>
-    <p class="usuarioAtual">Funcionário: <span type="text" id="funcionario" name="funcionario" required></span></p>
+    <div id="usuario" class="-flex">
+        <img src="" alt="avatar" id="avatar">
+        <div id="nomeUsuario"><span type="text" id="funcionario" name="funcionario" required></span></div>
+        <a id="sair" style="margin: 0px; text-align: center;" href="login.html">Sair</a>
+    </div>
     <div id="pagina">
         <div class="container novos">
             <h2>Cadastrar Equipamentos</h2>
@@ -28,14 +32,11 @@
                 </select>
 
                 <button type="cadastrarEquipamentoNovo">Cadastrar</button>
-                <div class="botoes">
-                    <a id="sair" href="login.html">Sair</a>
-                    <a id="estoqueF" href="estoque.html">Ver Estoque</a>
-                </div>
+                <a id="estoqueF" href="estoque.html">Ver Estoque</a>
             </form>
         </div>
         <div class="container vincular">
-            <h2>Usar Equipamentos</h2>
+            <h2>Utilizar os Equipamentos</h2>
             <form id="cadastroForm">
                 <label for="numeroSerie">Número de Série:</label>
                 <input type="text" id="numeroSerie" name="numeroSerie" required>
