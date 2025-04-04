@@ -27,7 +27,6 @@ body {
 }
 
 .containerbuscar {
-    height: 150px;
     background: rgba(255, 255, 255, 0.95);
     padding: 30px;
     border-radius: 15px;
@@ -35,6 +34,25 @@ body {
     margin-right: 20px;
     text-align: center;
     animation: fadeIn 0.5s ease-in-out;
+}
+
+#info {
+    background: rgba(255, 255, 255, 0.95);
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    text-align: left;
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+#info h4 {
+    margin-bottom: 27px;
+    font-size: 18px;
+}
+
+#info span {
+    font-weight: bold;
+    color: #6a11cb;
 }
 
 @keyframes fadeIn {
