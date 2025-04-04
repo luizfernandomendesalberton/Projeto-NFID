@@ -129,6 +129,20 @@ document.addEventListener('DOMContentLoaded', async function () {
         'https://b188-177-74-79-181.ngrok-free.app/equipamento'
     ];
 
+    let equipamentoNomeMap = {};
+
+    try {
+        const respostaEquipamentos = await fetch('http://127.0.0.1:5000/estoque');
+        if (respostaEquipamentos.ok) {
+            const equipamentos = await respostaEquipamentos.json();
+            equipamentos.forEach(equip => {
+                equipamentoNomeMap[equip.id] = equip.nome;                
+            });
+        }
+    } catch (error) {
+        console.warn('Erro ao carregar lista de equipamentos:', error);
+    }
+
     for (const url of urls) {
         try {
             const resposta = await fetch(url);
@@ -139,11 +153,12 @@ document.addEventListener('DOMContentLoaded', async function () {
                 materiais.forEach((material) => {
                     const row = equipamentoTable.insertRow();
                     row.insertCell(0).textContent = material.numeroSerie;
-                    row.insertCell(1).textContent = material.local;
-                    row.insertCell(2).textContent = material.funcionario;
+                    row.insertCell(1).textContent = equipamentoNomeMap[material.numeroSerie] || 'Desconhecido';
+                    row.insertCell(2).textContent = material.local;
+                    row.insertCell(3).textContent = material.funcionario;
 
                     // Botão de exclusão
-                    const cellAcoes = row.insertCell(3);
+                    const cellAcoes = row.insertCell(4);
                     const deleteBtn = document.createElement('button');
                     deleteBtn.textContent = 'Excluir';
                     deleteBtn.classList.add('delete-btn');
@@ -160,7 +175,7 @@ document.addEventListener('DOMContentLoaded', async function () {
                 return;
             }
         } catch (error) {
-            console.warn(`Erro ao carregar equipamento de ${url}:`, error);
+            console.warn(`Erro ao carregar equipamentos de ${url}:`, error);
         }
     }
 });
