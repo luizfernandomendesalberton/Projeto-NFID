@@ -26,13 +26,27 @@
                 <label for="status">Status:</label>
                 <select id="status">
                     <option value="all">Selecionar Status</option>
-                    <option value="novoItem">Novo</option>
+                    <option value="novo">Novo</option>
                     <option value="usado">Usado</option>
                     <option value="emprestado">Emprestado</option>
                 </select>
 
                 <button type="cadastrarEquipamentoNovo">Cadastrar</button>
                 <a id="estoqueF" href="estoque.html">Ver Estoque</a>
+            </form>
+        </div>
+        <div class="containerbuscar">
+            <h2>Buscar Equipamentos</h2>
+            <form id="Busca">
+                <div id="info">
+                    <h4>Relatório de Equipamentos</h4>
+                    <p>Total de Equipamentos: <span id="totalEquipo">11</span></p>
+                    <p>Equipamentos sendo Usados: <span id="totalSendoUsado">4</span></p>
+                    <p>Equipamentos Parado: <span id="totalParado">7</span></p>
+                    <p>Equipamentos Emprestados: <span id="totalEmprestado">1</span></p>
+                    <p>Novos Equipamentos: <span id="totalNovos">6</span></p>
+                </div>
+                <a id="buscarEquip" href="buscar.html">buscar</a>
             </form>
         </div>
         <div class="container vincular">
@@ -57,20 +71,6 @@
                 </select>
                 <button type="submit" onclick="funcionarioEquipamento()">Cadastrar</button>
                 <a id="UsoEquipo" href="equipamentos.html">Ver Usos</a>
-            </form>
-        </div>
-        <div class="containerbuscar">
-            <h2>Buscar Equipamentos</h2>
-            <form id="Busca">
-                <div id="info">
-                    <h4>Relatório de Equipamentos</h4>
-                    <p>Total de Equipamentos: <span id="totalEquipo">11</span></p>
-                    <p>Equipamentos sendo Usados: <span id="totalSendoUsado">4</span></p>
-                    <p>Equipamentos Parado: <span id="totalParado">7</span></p>
-                    <p>Equipamentos Emprestados: <span id="totalEmprestado">1</span></p>
-                    <p>Novos Equipamentos: <span id="totalNovos">6</span></p>
-                </div>
-                <a id="buscarEquip" href="buscar.html">buscar</a>
             </form>
         </div>
     </div>

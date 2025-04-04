@@ -18,5 +18,10 @@
         "numeroSerie": "9",
         "local": "radiologia",
         "funcionario": "luiz fernando"
+    },
+    {
+        "numeroSerie": "12",
+        "local": "consultorio",
+        "funcionario": "Gabriel"
     }
 ]
