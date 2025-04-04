@@ -206,4 +206,35 @@ function dadosUsuarios() {
     }
 }
 
-export { excluirMaterial, filtrarEquipamentos, carregarEstoque, carregarEquipamento, carregarBusca, dadosUsuarios };
+async function atualizarRelatorioEquipamentos() {
+    try {
+        const responseEquipamentos = await fetch('http://127.0.0.1:5000/equipamentos_completos');
+        const dadosEquipamentos = await responseEquipamentos.json();
+
+        const responseUsados = await fetch('http://127.0.0.1:5000/equipamento');
+        const dadosUsados = await responseUsados.json();
+
+        let total = dadosEquipamentos.length;
+        let usados = dadosUsados.length;
+        let parados = total - usados;
+        let emprestados = 0;
+        let novos = 0;
+
+        dadosEquipamentos.forEach(equip => {
+            const status = equip.status.toLowerCase();
+            if (status === 'emprestado') emprestados++;
+            if (status === 'novo') novos++;
+        });
+
+        document.getElementById('totalEquipo').textContent = total;
+        document.getElementById('totalSendoUsado').textContent = usados;
+        document.getElementById('totalParado').textContent = parados;
+        document.getElementById('totalEmprestado').textContent = emprestados;
+        document.getElementById('totalNovos').textContent = novos;
+
+    } catch (error) {
+        console.error('Erro ao atualizar relatório de equipamentos:', error);
+    }
+}
+
+export { excluirMaterial, filtrarEquipamentos, carregarEstoque, carregarEquipamento, carregarBusca, dadosUsuarios, atualizarRelatorioEquipamentos };
