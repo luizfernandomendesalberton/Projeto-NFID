@@ -2,12 +2,12 @@
     {
         "id": 1,
         "nome": "Respirador Pulmonar",
-        "status": "novo"
+        "status": "Em Uso"
     },
     {
         "id": 2,
         "nome": "Monitor Cardíaco",
-        "status": "novo"
+        "status": "Em Uso"
     },
     {
         "id": 3,
@@ -22,7 +22,7 @@
     {
         "id": 5,
         "nome": "Desfibrilador",
-        "status": "novo"
+        "status": "Em Uso"
     },
     {
         "id": 6,
@@ -42,7 +42,7 @@
     {
         "id": 9,
         "nome": "Aparelho de Ultrassom",
-        "status": "novo"
+        "status": "Em Uso"
     },
     {
         "id": 10,
@@ -57,6 +57,6 @@
     {
         "id": 12,
         "nome": "Estetoscópio",
-        "status": "novo"
+        "status": "Em Uso"
     }
 ]

@@ -99,6 +99,37 @@ def cadastrar_equipamento():
 
     return jsonify({"mensagem": "Equipamento cadastrado com sucesso!", "id": novo_equipamento["id"]}), 201
 
+@app.route('/atualizar_status/<int:equip_id>', methods=['PATCH'])
+def atualizar_status(equip_id):
+    estoque_path = os.path.join(DATA_DIR, 'estoque.json')
+
+    if not os.path.exists(estoque_path):
+        return jsonify({"erro": "Arquivo de estoque não encontrado"}), 404
+
+    with open(estoque_path, 'r', encoding='utf-8') as f:
+        try:
+            estoque = json.load(f)
+        except json.JSONDecodeError:
+            return jsonify({"erro": "Erro ao carregar estoque"}), 500
+
+    data = request.json
+    novo_status = data.get("status")
+
+    atualizado = False
+    for equipamento in estoque:
+        if equipamento["id"] == equip_id:
+            equipamento["status"] = novo_status
+            atualizado = True
+            break
+
+    if not atualizado:
+        return jsonify({"erro": "Equipamento não encontrado"}), 404
+
+    with open(estoque_path, 'w', encoding='utf-8') as f:
+        json.dump(estoque, f, indent=4, ensure_ascii=False)
+
+    return jsonify({"mensagem": "Status atualizado com sucesso"}), 200
+
 # 🔹 Rota para listar equipamentos
 @app.route('/estoque', methods=['GET'])
 def listar_equipamentos():

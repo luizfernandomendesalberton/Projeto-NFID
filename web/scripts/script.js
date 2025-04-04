@@ -59,7 +59,6 @@ document.getElementById('cadastroUsuarioForm')?.addEventListener('submit', async
 
             if (resposta.ok) {
                 const resultado = await resposta.json();
-                console.log(resultado);
                 alert(resultado.mensagem);
                 return;
             }

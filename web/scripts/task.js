@@ -42,6 +42,7 @@ function filtrarEquipamentos(tabela, idFiltro, nomeFiltro, statusFiltro) {
         const idMatch = idFiltro === '' || id.includes(idFiltro);
         const nomeMatch = nomeFiltro === '' || nome.includes(nomeFiltro);
         const statusMatch = statusFiltro === 'all' || status === statusFiltro;
+        console.log("status: ", status, "status do Filtro:", statusFiltro);
 
         linha.style.display = (idMatch && nomeMatch && statusMatch) ? '' : 'none';
     }
@@ -172,19 +173,28 @@ async function carregarBusca() {
                 const estoque = await respostaEstoque.json();
                 buscaTable.innerHTML = '';
 
-                estoque.forEach((equipamento) => {
+                estoque.forEach(async (equipamento) => {
                     const row = buscaTable.insertRow();
                     row.insertCell(0).textContent = equipamento.id;
                     row.insertCell(1).textContent = equipamento.nome;
-                    row.insertCell(2).textContent = equipamento.status;
+
+                    const funcionario = materiais[equipamento.id]?.funcionario || 'Nenhum';
+                    const novoStatus = funcionario !== 'Nenhum' ? 'Em Uso' : equipamento.status;
+
+                    row.insertCell(2).textContent = novoStatus;
 
                     const local = materiais[equipamento.id]?.local || 'Não atribuído';
-                    const funcionario = materiais[equipamento.id]?.funcionario || 'Nenhum';
-
                     row.insertCell(3).textContent = local;
                     row.insertCell(4).textContent = funcionario;
-                });
 
+                    if (novoStatus === 'Em Uso' && equipamento.status !== 'Em Uso') {
+                        await fetch(`http://127.0.0.1:5000/atualizar_status/${equipamento.id}`, {
+                            method: 'PATCH',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify({ status: 'Em Uso' })
+                        });
+                    }
+                });
                 return;
             }
         } catch (error) {
