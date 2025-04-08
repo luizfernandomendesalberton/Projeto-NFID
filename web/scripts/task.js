@@ -252,8 +252,9 @@ function tela() {
     const screenHeight = window.innerHeight;
     const screenWidth = window.innerWidth;
 
-    if (screenWidth >= 1900) {
-        button.style.bottom = "100px";
+    if (screenWidth >= 1500) {
+        button.style.bottom = "222px";
+        button.style.right = "612px";
     } else if (screenWidth <= 1366) {
 
     } else {
