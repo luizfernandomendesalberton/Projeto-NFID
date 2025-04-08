@@ -20,7 +20,6 @@ button:hover {
 
 .container, .containerbuscar {
     padding: 30px;
-    margin-right: 20px;
     text-align: center;
     background-color: #1b2a4e;
     border: 2px solid #3fa9f5;
@@ -93,7 +92,7 @@ button:hover {
 #entrarNFC {
     width: 150px;
     position: absolute;
-    right: 540px;
+    right: 530px;
     bottom: 174px;
     transition: all 0.3s ease-in-out;
     animation: fadeIn 0.5s ease-in-out;
@@ -160,4 +159,27 @@ button:hover {
     letter-spacing: 0.5px;
     text-shadow: 0 0 1px rgba(0, 0, 0, 0.3);
     transition: border 0.3s ease, box-shadow 0.3s ease;
+}
+
+#resposta {
+    top: 45%;
+    left: 30%;
+    margin-right: 200px;
+    position: absolute;
+    padding: 30px;
+    text-align: center;
+    background-color: #1b2a4e;
+    border: 2px solid #3fa9f5;
+    border-radius: 20px;
+    box-shadow: 0 0 12px rgba(63, 169, 245, 0.2);
+    color: #e0f7ff;
+    transition: all 0.3s ease-in-out;
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+@media screen and (max-width: 568px) {
+    #entrarNFC {
+        bottom: 243px;
+        right: 50px;
+    }
 }
