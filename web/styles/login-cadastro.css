@@ -177,9 +177,15 @@ button:hover {
     animation: fadeIn 0.5s ease-in-out;
 }
 
-@media screen and (max-width: 568px) {
+@media screen and (min-width: 1366px) {
     #entrarNFC {
         bottom: 243px;
         right: 50px;
+    }
+}
+@media screen and (max-width: 1920px) {
+    #entrarNFC {
+        bottom: 0px;
+        right: 0px;
     }
 }
