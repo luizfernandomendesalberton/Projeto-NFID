@@ -21,52 +21,63 @@
     max-height: 450px;
     position: relative;
     top: 20px;
+    background-color: #1b2a4e;
+    border: 2px solid #3fa9f5;
+    border-radius: 12px;
+    box-shadow: 0 0 10px rgba(63, 169, 245, 0.2);
+    padding: 15px;
 }
 
+/* Tabela em si */
 #estoqueTable {
     width: 100%;
     border-collapse: collapse;
+    background-color: #22385f;
+    color: #e0f7ff;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    border-radius: 8px;
+    overflow: hidden;
 }
 
-#estoqueTable th, #estoqueTable td {
-    border: 1px solid #ddd;
-    padding: 8px;
+/* Células da tabela */
+#estoqueTable th, 
+#estoqueTable td {
+    border: 1px solid rgba(63, 169, 245, 0.2);
+    padding: 10px 14px;
     text-align: left;
 }
 
+/* Cabeçalho da tabela */
+#estoqueTable th {
+    background: linear-gradient(135deg, #2575fc, #4fc3f7);
+    color: #ffffff;
+    font-weight: 600;
+    text-shadow: 0 0 1px rgba(0, 0, 0, 0.2);
+    position: sticky;
+    top: 0;
+    z-index: 1;
+}
+
+/* Linhas com hover */
+#estoqueTable tr:hover {
+    background-color: rgba(79, 195, 247, 0.05);
+    transition: background-color 0.3s ease;
+}
+
+/* Links */
+a {
+    color: #4fc3f7;
+    text-decoration: none;
+}
+a:hover {
+    text-decoration: underline;
+}
+
+/* Botão sair estoque */
 .sairEstoque {
     position: absolute;
     width: 60px;
     left: 30px;
-}
-
-a{
-    color: #070a0f;
-}
-
-table {
-    width: 100%;
-    border-collapse: collapse;
-    background: #fff;
-    border-radius: 8px;
-    overflow: hidden;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-}
-
-th, td {
-    padding: 12px;
-    text-align: left;
-    border-bottom: 1px solid #ddd;
-}
-
-th {
-    background: linear-gradient(135deg, #6a11cb, #2575fc);
-    color: #fff;
-    font-weight: 500;
-}
-
-tr:hover {
-    background-color: #f9f9f9;
 }
 
 .delete-btn {
