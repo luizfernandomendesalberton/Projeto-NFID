@@ -18,7 +18,34 @@ button:hover {
     color: white;
 }
 
-#cadastrarF, #entrarFuncionario {
+.container, .containerbuscar {
+    padding: 30px;
+    margin-right: 20px;
+    text-align: center;
+    background-color: #1b2a4e;
+    border: 2px solid #3fa9f5;
+    border-radius: 20px;
+    box-shadow: 0 0 12px rgba(63, 169, 245, 0.2);
+    color: #e0f7ff;
+    transition: all 0.3s ease-in-out;
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+#info p, #info h4 {
+    color: #1a2a4f;
+}
+
+.container h2, .containerbuscar h2 {
+    color: white;
+    text-shadow: 0 0 1px rgba(0, 0, 0, 0.3);
+}
+
+#cadastrarF {
+    width: 100px;
+    height: 40px;
+}
+
+#entrarFuncionario {
     width: 150px;
 }
 
@@ -36,8 +63,8 @@ button:hover {
     width: 100%;
 }
 
-#estoqueF:hover {
-    background: linear-gradient(135deg, #ff6262, #ff2222);
+#estoqueF:hover, #UsoEquipo:hover, #buscarEquip:hover {
+    background: linear-gradient(135deg, #2575fc, #6a11cb);
     transform: translateY(-2px);
 }
 

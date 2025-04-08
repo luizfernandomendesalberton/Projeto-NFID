@@ -16,26 +16,6 @@ body {
     image-rendering: crisp-edges;
 }
 
-.container {
-    background: rgba(255, 255, 255, 0.95);
-    padding: 30px;
-    border-radius: 15px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-    margin-right: 20px;
-    text-align: center;
-    animation: fadeIn 0.5s ease-in-out;
-}
-
-.containerbuscar {
-    background: rgba(255, 255, 255, 0.95);
-    padding: 30px;
-    border-radius: 15px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-    margin-right: 20px;
-    text-align: center;
-    animation: fadeIn 0.5s ease-in-out;
-}
-
 #info {
     background: rgba(255, 255, 255, 0.95);
     padding: 30px;
@@ -116,7 +96,7 @@ button:hover {
 a {
     display: block;
     margin-top: 15px;
-    color: #050707;
+    color: white;
     text-decoration: none;
     font-weight: 500;
     transition: color 0.3s ease;
