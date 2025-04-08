@@ -59,13 +59,19 @@ def login():
 @app.route('/busca-cadastro', methods=['POST'])
 def cadastrar_material():
     novo_material = request.json
-    materiais = []
 
     mat_path = os.path.join(DATA_DIR, 'material.json')
+    materiais = []
 
     if os.path.exists(mat_path):
         with open(mat_path, 'r', encoding='utf-8') as f:
             materiais = json.load(f)
+
+    numero_serie_novo = novo_material.get("numeroSerie")
+
+    for material in materiais:
+        if material.get("numeroSerie") == numero_serie_novo:
+            return jsonify({"mensagem": "Número de série já cadastrado! Favor Verifique na tela de Busca!"}), 400
 
     materiais.append(novo_material)
 

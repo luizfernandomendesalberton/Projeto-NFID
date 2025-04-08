@@ -111,6 +111,11 @@ document.getElementById('cadastroForm')?.addEventListener('submit', async functi
                 alert(resultado.mensagem);
                 document.getElementById('cadastroForm').reset();
                 return;
+            } else {
+                const resultado = await resposta.json();
+                alert(resultado.mensagem);
+                document.getElementById('cadastroForm').reset();
+                return;
             }
         } catch (erro) {
             console.warn(`Falha ao conectar em ${url}:`, erro);
