@@ -205,7 +205,7 @@ async function carregarBusca() {
 
 function dadosUsuarios() {
     const NomeUsuario = localStorage.getItem('funcionarioAtual');
-    
+
     const avatar = document.getElementById('avatar');
     if (NomeUsuario === "Gabriel") {
         avatar.src = './assets/imagens/gabriel.jpg';
@@ -246,5 +246,21 @@ async function atualizarRelatorioEquipamentos() {
         console.error('Erro ao atualizar relatório de equipamentos:', error);
     }
 }
+
+function tela() {
+    const button = document.getElementById('entrarNFC');
+    const screenHeight = window.innerHeight;
+    const screenWidth = window.innerWidth;
+
+    if (screenWidth >= 1900) {
+        button.style.bottom = "100px";
+    } else if (screenWidth <= 1366) {
+
+    } else {
+        button.style.bottom = "120px";
+    }
+}
+
+tela();
 
 export { excluirMaterial, filtrarEquipamentos, carregarEstoque, carregarEquipamento, carregarBusca, dadosUsuarios, atualizarRelatorioEquipamentos };
