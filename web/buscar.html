@@ -12,7 +12,11 @@
 </head>
 
 <body>
-    <p class="usuarioAtual">Funcionário: <span type="text" id="funcionario" name="funcionario" required></span></p>
+    <div id="usuarioB" class="-flex">
+        <img src="" alt="avatar" id="avatar">
+        <div id="nomeUsuarioB"><span type="text" id="funcionario" name="funcionario" required></span></div>
+        <a id="sair" style="margin: 0px; text-align: center;" href="login.html">Sair</a>
+    </div>
     <div class="container filtro">
         <a id="sair" class="sairBusca" href="busca-cadastro.html" style="margin-top: 10px;">Voltar</a>
         <h2>Filtros</h2>
@@ -23,9 +27,6 @@
                     <option value="all">Buscar por Status</option>
                     <option value="em uso">Em Uso</option>
                     <option value="novo">Novo</option>
-                    <option value="disponivel">Disponível</option>
-                    <option value="manutencao">Manutenção</option>
-                    <option value="usado">Usado</option>
                     <option value="emprestado">Emprestado</option>
                 </select>
             </p>

@@ -58,5 +58,195 @@
         "id": 12,
         "nome": "Estetoscópio",
         "status": "Em Uso"
+    },
+    {
+        "id": 13,
+        "nome": "Balança Digital",
+        "status": "novo"
+    },
+    {
+        "id": 14,
+        "nome": "Laringoscópio",
+        "status": "novo"
+    },
+    {
+        "id": 15,
+        "nome": "Bisturi Elétrico",
+        "status": "novo"
+    },
+    {
+        "id": 16,
+        "nome": "Nebulizador",
+        "status": "novo"
+    },
+    {
+        "id": 17,
+        "nome": "Cadeira de Rodas",
+        "status": "novo"
+    },
+    {
+        "id": 18,
+        "nome": "Colchão Hospitalar",
+        "status": "novo"
+    },
+    {
+        "id": 19,
+        "nome": "Mesa Cirúrgica",
+        "status": "novo"
+    },
+    {
+        "id": 20,
+        "nome": "Monitor Multiparamétrico",
+        "status": "novo"
+    },
+    {
+        "id": 21,
+        "nome": "Centrífuga de Laboratório",
+        "status": "novo"
+    },
+    {
+        "id": 22,
+        "nome": "Aspirador Cirúrgico",
+        "status": "novo"
+    },
+    {
+        "id": 23,
+        "nome": "Autoclave",
+        "status": "novo"
+    },
+    {
+        "id": 24,
+        "nome": "Bomba de Sucção",
+        "status": "novo"
+    },
+    {
+        "id": 25,
+        "nome": "Detector Fetal",
+        "status": "novo"
+    },
+    {
+        "id": 26,
+        "nome": "Otoscópio",
+        "status": "novo"
+    },
+    {
+        "id": 27,
+        "nome": "Dermatoscópio",
+        "status": "novo"
+    },
+    {
+        "id": 28,
+        "nome": "Cama Hospitalar",
+        "status": "novo"
+    },
+    {
+        "id": 29,
+        "nome": "Aquecedor de Soro",
+        "status": "novo"
+    },
+    {
+        "id": 30,
+        "nome": "Fotóforo Cirúrgico",
+        "status": "novo"
+    },
+    {
+        "id": 31,
+        "nome": "Eletroencefalograma",
+        "status": "novo"
+    },
+    {
+        "id": 32,
+        "nome": "Incubadora Neonatal",
+        "status": "novo"
+    },
+    {
+        "id": 33,
+        "nome": "Carrinho de Emergência",
+        "status": "novo"
+    },
+    {
+        "id": 34,
+        "nome": "Balança Antropométrica",
+        "status": "novo"
+    },
+    {
+        "id": 35,
+        "nome": "Maca Articulada",
+        "status": "novo"
+    },
+    {
+        "id": 36,
+        "nome": "Reanimador Manual",
+        "status": "novo"
+    },
+    {
+        "id": 37,
+        "nome": "Serra Gessada",
+        "status": "novo"
+    },
+    {
+        "id": 38,
+        "nome": "Oxigenador Portátil",
+        "status": "novo"
+    },
+    {
+        "id": 39,
+        "nome": "Eletrodo de ECG",
+        "status": "novo"
+    },
+    {
+        "id": 40,
+        "nome": "Bisturi de Placa",
+        "status": "novo"
+    },
+    {
+        "id": 41,
+        "nome": "Lanterna Clínica",
+        "status": "novo"
+    },
+    {
+        "id": 42,
+        "nome": "Mesa Auxiliar",
+        "status": "novo"
+    },
+    {
+        "id": 43,
+        "nome": "Porta Soro",
+        "status": "novo"
+    },
+    {
+        "id": 44,
+        "nome": "Suporte para Cilindro",
+        "status": "novo"
+    },
+    {
+        "id": 45,
+        "nome": "Tensímetro Digital",
+        "status": "novo"
+    },
+    {
+        "id": 46,
+        "nome": "Mesa de Mayo",
+        "status": "novo"
+    },
+    {
+        "id": 47,
+        "nome": "Calibrador de Pressão",
+        "status": "novo"
+    },
+    {
+        "id": 48,
+        "nome": "Foco Auxiliar",
+        "status": "novo"
+    },
+    {
+        "id": 49,
+        "nome": "Sensor de Temperatura",
+        "status": "novo"
+    },
+    {
+        "id": 50,
+        "nome": "Detector de Gases",
+        "status": "novo"
     }
 ]

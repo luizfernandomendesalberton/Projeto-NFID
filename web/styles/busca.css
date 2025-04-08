@@ -95,3 +95,22 @@ tr:hover {
 .delete-btn:hover {
     background: #cc0000;
 }
+
+#usuarioB {
+    top: 0px;
+    left: 0px;
+    position: absolute;
+    text-align: center;
+    width: 300px;
+    height: 80px;
+    color: white;
+    justify-content: space-around;
+    background-color: #1a2a4f;
+    border-radius: 0 0 20px 0;
+    border: 2px solid #3fa9f5;
+    box-shadow: 0 0 8px rgba(63, 169, 245, 0.4);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    letter-spacing: 0.5px;
+    text-shadow: 0 0 1px rgba(0, 0, 0, 0.3);
+    transition: border 0.3s ease, box-shadow 0.3s ease;
+}
