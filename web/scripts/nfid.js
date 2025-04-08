@@ -10,6 +10,7 @@ async function loginNFC() {
             resposta.innerHTML = "<strong>Aguardando leitura da tag NFC...</strong>";
 
             ndef.onreading = event => {
+                resposta.style.display = "none";
                 const decoder = new TextDecoder();
                 for (const record of event.message.records) {
                     const rawData = decoder.decode(record.data);
@@ -25,7 +26,11 @@ async function loginNFC() {
 
                     } catch (erro) {
                         console.error("Erro ao interpretar os dados da tag:", erro);
-                        alert("Tag NFC inválida. Esperado formato JSON com username e password.");
+                        resposta.style.display = "block";
+                        resposta.innerHTML = "<strong>Erro ao interpretar os dados da tag NFC.</strong>";
+                        setTimeout(() => {
+                            resposta.style.display = "none";
+                        }, 2000);
                     }
                 }
             };

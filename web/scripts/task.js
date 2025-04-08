@@ -5,7 +5,7 @@ async function excluirMaterial(id) {
 
     const urls = [
         `http://127.0.0.1:5000/excluir-material/${id}`,
-        `https://b188-177-74-79-181.ngrok-free.app/excluir-material/${id}`
+        `https://dc61-177-74-79-181.ngrok-free.app/excluir-material/${id}`
     ];
 
     for (const url of urls) {
@@ -55,7 +55,7 @@ async function carregarEstoque() {
 
     const urls = [
         'http://127.0.0.1:5000/estoque',
-        'https://b188-177-74-79-181.ngrok-free.app/estoque'
+        'https://dc61-177-74-79-181.ngrok-free.app/estoque'
     ];
 
     for (const url of urls) {
@@ -101,7 +101,7 @@ async function carregarEquipamento() {
 
     const urls = [
         'http://127.0.0.1:5000/equipamento',
-        'https://b188-177-74-79-181.ngrok-free.app/equipamento'
+        'https://dc61-177-74-79-181.ngrok-free.app/equipamento'
     ];
 
     for (const url of urls) {
@@ -146,7 +146,7 @@ async function carregarBusca() {
 
     const urls = [
         'http://127.0.0.1:5000/estoque',
-        'https://b188-177-74-79-181.ngrok-free.app/estoque'
+        'https://dc61-177-74-79-181.ngrok-free.app/estoque'
     ];
 
     const materiais = {};
