@@ -46,6 +46,8 @@ button:hover {
 }
 
 #entrarFuncionario {
+    position: relative;
+    right: 80px;
     width: 150px;
 }
 
@@ -86,6 +88,15 @@ button:hover {
 #voltarEstoque {
     position: absolute;
     top: 0px;
+}
+
+#entrarNFC {
+    width: 150px;
+    position: absolute;
+    right: 540px;
+    bottom: 174px;
+    transition: all 0.3s ease-in-out;
+    animation: fadeIn 0.5s ease-in-out;
 }
 
 .-flex {

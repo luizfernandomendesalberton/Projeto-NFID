@@ -11,17 +11,18 @@
 <body>
     <div class="container">
         <h2>Login</h2>
-        <form id="loginForm">
+        <form id="loginForm" style="width: 350px;">
             <label for="username">Usuário:</label>
-            <input type="text" id="username" name="username" required>
+            <input type="text" id="username" name="username" placeholder="Nome do Funcionário" required>
             
             <label for="password">Senha:</label>
-            <input type="password" id="password" name="password" required>
+            <input type="password" id="password" name="password" placeholder="********" required>
             
             <button id="entrarFuncionario" type="submit">Entrar</button>
         </form>
         <a href="cadastro-usuario.html">Cadastrar Novo Usuário?</a>
     </div>
+    <button id="entrarNFC">Login NFC</button>
 
     <script type="module" src="./scripts/script.js"></script>
 </body>

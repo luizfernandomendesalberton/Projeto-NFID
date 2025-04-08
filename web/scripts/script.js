@@ -1,4 +1,5 @@
 import { excluirMaterial, filtrarEquipamentos, carregarEstoque, carregarEquipamento, carregarBusca, dadosUsuarios, atualizarRelatorioEquipamentos } from "./task.js";
+import { loginNFC } from "./nfid.js";
 
 // Função para realizar o Login com base nos Usuários Cadastrados
 document.getElementById('loginForm')?.addEventListener('submit', async function (event) {
@@ -335,6 +336,12 @@ document.addEventListener('DOMContentLoaded', function () {
 
         filtrarEquipamentos(buscaTable, idFiltro, nomeFiltro, statusFiltro);
     });
+});
+
+// Funções para NFID
+
+document.getElementById('entrarNFC')?.addEventListener('click', async function () {
+    loginNFC();
 });
 
 dadosUsuarios();
