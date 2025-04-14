@@ -144,7 +144,7 @@ document.addEventListener('DOMContentLoaded', async function () {
         if (respostaEquipamentos.ok) {
             const equipamentos = await respostaEquipamentos.json();
             equipamentos.forEach(equip => {
-                equipamentoNomeMap[equip.id] = equip.nome;                
+                equipamentoNomeMap[equip.id] = equip.nome;
             });
         }
     } catch (error) {
@@ -344,6 +344,45 @@ document.addEventListener('DOMContentLoaded', function () {
         filtrarEquipamentos(buscaTable, idFiltro, nomeFiltro, statusFiltro);
     });
 });
+
+let konamiCode = [
+    "ArrowUp", "ArrowUp",
+    "ArrowDown", "ArrowDown",
+    "ArrowLeft", "ArrowRight",
+    "ArrowLeft", "ArrowRight"
+];
+
+let inputSequence = [];
+
+window.addEventListener("keydown", (event) => {
+    inputSequence.push(event.key);
+    if (inputSequence.length > konamiCode.length) {
+        inputSequence.shift();
+    }
+
+    if (JSON.stringify(inputSequence) === JSON.stringify(konamiCode)) {
+        ativarModoHacker();
+        inputSequence = [];
+    }
+});
+
+function ativarModoHacker() {
+    document.body.style.filter = "hue-rotate(300deg) saturate(100%)";
+    document.body.insertAdjacentHTML('beforeend', `
+      <div id="hackerMsg" style="
+        position:fixed;
+        top:0; left:0;
+        width:100%;
+        background:#000;
+        color:#0f0;
+        text-align:center;
+        padding:10px;
+        font-weight:bold;
+        z-index:-1;
+        font-family: monospace;
+      ">🧠 Modo Desenvolvimento Ativado: Bem-vindo à Zona de Testes!</div>
+    `);
+}
 
 // Funções para NFID
 
