@@ -203,6 +203,27 @@ async function carregarBusca() {
     }
 }
 
+async function atualizaStatus(numeroSerie) {
+    const url = 'http://127.0.0.1:5000/atualizar_status/' + numeroSerie;
+
+    try {
+        const resposta = await fetch(url, {
+            method: 'PATCH',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ status: 'Em Uso' })
+        });
+
+        if (resposta.ok) {
+            const resultado = await resposta.json();
+            console.log('Status atualizado:', resultado.mensagem);
+        } else {
+            console.warn('Falha ao atualizar status:', await resposta.text());
+        }
+    } catch (error) {
+        console.error('Erro ao atualizar status:', error);
+    }
+}
+
 function dadosUsuarios() {
     const NomeUsuario = localStorage.getItem('funcionarioAtual');
 
@@ -264,4 +285,4 @@ function tela() {
 
 tela();
 
-export { excluirMaterial, filtrarEquipamentos, carregarEstoque, carregarEquipamento, carregarBusca, dadosUsuarios, atualizarRelatorioEquipamentos };
+export { excluirMaterial, filtrarEquipamentos, carregarEstoque, carregarEquipamento, carregarBusca, dadosUsuarios, atualizarRelatorioEquipamentos, atualizaStatus };

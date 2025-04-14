@@ -1,4 +1,4 @@
-import { excluirMaterial, filtrarEquipamentos, carregarEstoque, carregarEquipamento, carregarBusca, dadosUsuarios, atualizarRelatorioEquipamentos } from "./task.js";
+import { excluirMaterial, filtrarEquipamentos, carregarEstoque, carregarEquipamento, carregarBusca, dadosUsuarios, atualizarRelatorioEquipamentos, atualizaStatus } from "./task.js";
 import { loginNFC } from "./nfid.js";
 
 // Função para realizar o Login com base nos Usuários Cadastrados
@@ -110,6 +110,8 @@ document.getElementById('cadastroForm')?.addEventListener('submit', async functi
                 const resultado = await resposta.json();
                 alert(resultado.mensagem);
                 document.getElementById('cadastroForm').reset();
+                atualizaStatus(numeroSerie);
+                atualizarRelatorioEquipamentos();
                 return;
             } else {
                 const resultado = await resposta.json();
@@ -166,7 +168,7 @@ document.addEventListener('DOMContentLoaded', async function () {
                     // Botão de exclusão
                     const cellAcoes = row.insertCell(4);
                     const deleteBtn = document.createElement('button');
-                    deleteBtn.textContent = 'Excluir';
+                    deleteBtn.textContent = 'Remover';
                     deleteBtn.classList.add('delete-btn');
                     deleteBtn.setAttribute('data-id', material.numeroSerie);
                     cellAcoes.appendChild(deleteBtn);

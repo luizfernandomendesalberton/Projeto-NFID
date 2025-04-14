@@ -222,7 +222,7 @@
     {
         "id": 45,
         "nome": "Tensímetro Digital",
-        "status": "novo"
+        "status": "Em Uso"
     },
     {
         "id": 46,
@@ -247,6 +247,6 @@
     {
         "id": 50,
         "nome": "Detector de Gases",
-        "status": "novo"
+        "status": "Em Uso"
     }
 ]

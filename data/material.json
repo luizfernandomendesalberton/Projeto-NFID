@@ -23,5 +23,15 @@
         "numeroSerie": "12",
         "local": "consultorio",
         "funcionario": "Gabriel"
+    },
+    {
+        "numeroSerie": "50",
+        "local": "farmacia",
+        "funcionario": "Gabriel"
+    },
+    {
+        "numeroSerie": "45",
+        "local": "enfermaria",
+        "funcionario": "Gabriel"
     }
 ]
