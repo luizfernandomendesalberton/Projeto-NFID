@@ -17,6 +17,7 @@ async function excluirMaterial(id) {
 
             if (resposta.ok) {
                 const resultado = await resposta.json();
+                await atualizaStatusNovo(id);
                 alert(resultado.mensagem);
                 location.reload();
                 return;
@@ -211,6 +212,27 @@ async function atualizaStatus(numeroSerie) {
             method: 'PATCH',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ status: 'Em Uso' })
+        });
+
+        if (resposta.ok) {
+            const resultado = await resposta.json();
+            console.log('Status atualizado:', resultado.mensagem);
+        } else {
+            console.warn('Falha ao atualizar status:', await resposta.text());
+        }
+    } catch (error) {
+        console.error('Erro ao atualizar status:', error);
+    }
+}
+
+async function atualizaStatusNovo(numeroSerie) {
+    const url = 'http://127.0.0.1:5000/atualizar_status/' + numeroSerie;
+
+    try {
+        const resposta = await fetch(url, {
+            method: 'PATCH',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ status: 'novo' })
         });
 
         if (resposta.ok) {

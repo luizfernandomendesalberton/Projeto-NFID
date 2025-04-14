@@ -28,10 +28,5 @@
         "numeroSerie": "50",
         "local": "farmacia",
         "funcionario": "Gabriel"
-    },
-    {
-        "numeroSerie": "45",
-        "local": "enfermaria",
-        "funcionario": "Gabriel"
     }
 ]
