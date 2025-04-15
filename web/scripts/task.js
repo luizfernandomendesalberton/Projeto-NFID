@@ -251,11 +251,11 @@ function dadosUsuarios() {
 
     const avatar = document.getElementById('avatar');
     if (NomeUsuario === "Gabriel") {
-        avatar.src = './assets/imagens/gabriel.jpg';
+        avatar.src = './assets/icons/gabriel.jpg';
     } else if (NomeUsuario === "luiz fernando") {
-        avatar.src = './assets/imagens/luiz.png';
+        avatar.src = './assets/icons/luiz.png';
     } else {
-        avatar.src = './assets/imagens/novo.png';
+        avatar.src = './assets/icons/novo.png';
     }
 }
 
