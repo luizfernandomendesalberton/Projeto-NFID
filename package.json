@@ -1,0 +1,24 @@
+{
+  "name": "nfid",
+  "version": "1.0.0",
+  "description": "Este projeto é um sistema de rastreamento de equipamentos médicos utilizando a tecnologia **NFID** (Near Field Identification). O objetivo é monitorar a localização e status de dispositivos médicos em hospitais e clínicas, garantindo maior controle e segurança.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/luizfernandomendesalberton/Projeto-NFID.git"
+  },
+  "author": "luiz fernando",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/luizfernandomendesalberton/Projeto-NFID/issues"
+  },
+  "homepage": "https://github.com/luizfernandomendesalberton/Projeto-NFID#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^5.1.0",
+    "mysql2": "^3.14.0"
+  }
+}
