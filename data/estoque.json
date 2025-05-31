@@ -248,5 +248,15 @@
         "id": 50,
         "nome": "Detector de Gases",
         "status": "Em Uso"
+    },
+    {
+        "id": 51,
+        "nome": "maca",
+        "status": "novo"
+    },
+    {
+        "id": 52,
+        "nome": "teste",
+        "status": "novo"
     }
 ]

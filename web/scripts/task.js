@@ -250,8 +250,8 @@ function dadosUsuarios() {
     const NomeUsuario = localStorage.getItem('funcionarioAtual');
 
     const avatar = document.getElementById('avatar');
-    if (NomeUsuario === "Gabriel") {
-        avatar.src = './assets/icons/gabriel.jpg';
+    if (NomeUsuario === "ana") {
+        avatar.src = './assets/icons/ana.jpg';
     } else if (NomeUsuario === "luiz fernando") {
         avatar.src = './assets/icons/luiz.png';
     } else {
@@ -292,6 +292,10 @@ async function atualizarRelatorioEquipamentos() {
 
 function tela() {
     const button = document.getElementById('entrarNFC');
+    if (!button) {
+        console.warn("Elemento com id 'entrarNFC' não encontrado.");
+        return;
+    }
     const screenHeight = window.innerHeight;
     const screenWidth = window.innerWidth;
 
@@ -299,7 +303,7 @@ function tela() {
         button.style.bottom = "222px";
         button.style.right = "612px";
     } else if (screenWidth <= 1366) {
-
+        // Adicione aqui o que deseja para telas pequenas, se necessário
     } else {
         button.style.bottom = "120px";
     }
