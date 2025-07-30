@@ -250,12 +250,12 @@ function dadosUsuarios() {
     const NomeUsuario = localStorage.getItem('funcionarioAtual');
 
     const avatar = document.getElementById('avatar');
-    if (NomeUsuario === "ana") {
-        avatar.src = './assets/icons/ana.jpg';
+    if (NomeUsuario === "Gabriel") {
+        avatar.src = './assets/imagens/gabriel.jpg';
     } else if (NomeUsuario === "luiz fernando") {
-        avatar.src = './assets/icons/luiz.png';
+        avatar.src = './assets/imagens/luiz.png';
     } else {
-        avatar.src = './assets/icons/novo.png';
+        avatar.src = './assets/imagens/novo.png';
     }
 }
 
