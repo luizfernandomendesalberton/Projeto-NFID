@@ -88,6 +88,7 @@ button {
     transition: transform 0.3s ease, background 0.3s ease;
 }
 
+
 button:hover {
     background: linear-gradient(135deg, #2575fc, #6a11cb);
     transform: translateY(-2px);
