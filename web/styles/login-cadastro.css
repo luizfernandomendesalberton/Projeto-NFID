@@ -90,8 +90,10 @@ button:hover {
 }
 
 #entrarNFC {
+    left: -190px;
+    top: 105px;
     width: 150px;
-    position: absolute;
+    position: relative;
     right: 530px;
     bottom: 174px;
     transition: all 0.3s ease-in-out;
