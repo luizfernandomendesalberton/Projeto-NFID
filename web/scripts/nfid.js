@@ -86,5 +86,49 @@ export async function buscaNFID() {
         alert("Erro ao tentar usar NFC.");
     }
 }
+export async function cadastraNFID() {
+    try {
+        if ("NDEFReader" in window) {
+            const ndef = new NDEFReader();
+            await ndef.scan();
+
+            const resposta = document.getElementById("resposta");
+            if (resposta) {
+                resposta.style.display = "block";
+                resposta.innerHTML = "<strong>Aguardando leitura da tag NFC...</strong>";
+            }
+
+            ndef.onreading = event => {
+                if (resposta) resposta.style.display = "none";
+                const decoder = new TextDecoder();
+                for (const record of event.message.records) {
+                    const rawData = decoder.decode(record.data);
+                    try {
+                        const dados = JSON.parse(rawData);
+                        // Preenche os campos do formulário de cadastro
+                        document.getElementById("nfid").value = dados.nfid || "";
+                        document.getElementById("nomeEquipamento").value = dados.nome || "";
+                        document.getElementById("status").value = (dados.status || "novo").toLowerCase();
+
+                        // Aciona o cadastro automaticamente
+                        const btn = document.getElementById("cadastrarButton");
+                        if (btn) btn.click();
+
+                    } catch (erro) {
+                        if (resposta) {
+                            resposta.style.display = "block";
+                            resposta.innerHTML = "<strong>Erro ao interpretar os dados da tag NFC.</strong>";
+                            setTimeout(() => { resposta.style.display = "none"; }, 2000);
+                        }
+                    }
+                }
+            };
+        } else {
+            alert("NFC não é suportado neste navegador.");
+        }
+    } catch (erro) {
+        alert("Erro ao tentar usar NFC.");
+    }
+}
 
 export { loginNFC };
