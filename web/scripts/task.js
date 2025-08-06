@@ -48,6 +48,34 @@ function filtrarEquipamentos(tabela, idFiltro, nomeFiltro, statusFiltro) {
         linha.style.display = (idMatch && nomeMatch && statusMatch) ? '' : 'none';
     }
 }
+async function excluirEquipamento(id) {
+    const confirmacao = confirm('Tem certeza que deseja excluir este equipamento?');
+    if (!confirmacao) return;
+
+    const urls = [
+        `http://127.0.0.1:5000/estoque/${id}`,
+        `https://dc61-177-74-79-181.ngrok-free.app/estoque/${id}`
+    ];
+
+    for (const url of urls) {
+        try {
+            const resposta = await fetch(url, {
+                method: 'DELETE',
+                headers: { 'Content-Type': 'application/json' }
+            });
+
+            if (resposta.ok) {
+                const resultado = await resposta.json();
+                alert(resultado.mensagem);
+                location.reload();
+                return;
+            }
+        } catch (error) {
+            console.warn(`Erro ao excluir equipamento de ${url}:`, error);
+        }
+    }
+    alert('Falha ao excluir o equipamento. Verifique sua conexão.');
+}
 
 // Função para carregar o ESTOQUE
 async function carregarEstoque() {

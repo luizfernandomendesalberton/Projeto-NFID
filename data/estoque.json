@@ -6,17 +6,17 @@
     },
     {
         "id": 2,
-        "nome": "Monitor Cardíaco",
+        "nome": "Monitor Card\u00edaco",
         "status": "Em Uso"
     },
     {
         "id": 3,
-        "nome": "Bomba de Infusão",
+        "nome": "Bomba de Infus\u00e3o",
         "status": "novo"
     },
     {
         "id": 4,
-        "nome": "Eletrocardiógrafo",
+        "nome": "Eletrocardi\u00f3grafo",
         "status": "novo"
     },
     {
@@ -26,17 +26,17 @@
     },
     {
         "id": 6,
-        "nome": "Oxímetro de Pulso",
+        "nome": "Ox\u00edmetro de Pulso",
         "status": "novo"
     },
     {
         "id": 7,
-        "nome": "Ventilador Mecânico",
+        "nome": "Ventilador Mec\u00e2nico",
         "status": "novo"
     },
     {
         "id": 8,
-        "nome": "Termômetro Digital",
+        "nome": "Term\u00f4metro Digital",
         "status": "novo"
     },
     {
@@ -46,7 +46,7 @@
     },
     {
         "id": 10,
-        "nome": "Seringa Automática",
+        "nome": "Seringa Autom\u00e1tica",
         "status": "novo"
     },
     {
@@ -56,22 +56,22 @@
     },
     {
         "id": 12,
-        "nome": "Estetoscópio",
+        "nome": "Estetosc\u00f3pio",
         "status": "Em Uso"
     },
     {
         "id": 13,
-        "nome": "Balança Digital",
+        "nome": "Balan\u00e7a Digital",
         "status": "novo"
     },
     {
         "id": 14,
-        "nome": "Laringoscópio",
+        "nome": "Laringosc\u00f3pio",
         "status": "novo"
     },
     {
         "id": 15,
-        "nome": "Bisturi Elétrico",
+        "nome": "Bisturi El\u00e9trico",
         "status": "novo"
     },
     {
@@ -86,27 +86,27 @@
     },
     {
         "id": 18,
-        "nome": "Colchão Hospitalar",
+        "nome": "Colch\u00e3o Hospitalar",
         "status": "novo"
     },
     {
         "id": 19,
-        "nome": "Mesa Cirúrgica",
+        "nome": "Mesa Cir\u00fargica",
         "status": "novo"
     },
     {
         "id": 20,
-        "nome": "Monitor Multiparamétrico",
+        "nome": "Monitor Multiparam\u00e9trico",
         "status": "novo"
     },
     {
         "id": 21,
-        "nome": "Centrífuga de Laboratório",
+        "nome": "Centr\u00edfuga de Laborat\u00f3rio",
         "status": "novo"
     },
     {
         "id": 22,
-        "nome": "Aspirador Cirúrgico",
+        "nome": "Aspirador Cir\u00fargico",
         "status": "novo"
     },
     {
@@ -116,7 +116,7 @@
     },
     {
         "id": 24,
-        "nome": "Bomba de Sucção",
+        "nome": "Bomba de Suc\u00e7\u00e3o",
         "status": "novo"
     },
     {
@@ -126,12 +126,12 @@
     },
     {
         "id": 26,
-        "nome": "Otoscópio",
+        "nome": "Otosc\u00f3pio",
         "status": "novo"
     },
     {
         "id": 27,
-        "nome": "Dermatoscópio",
+        "nome": "Dermatosc\u00f3pio",
         "status": "novo"
     },
     {
@@ -146,7 +146,7 @@
     },
     {
         "id": 30,
-        "nome": "Fotóforo Cirúrgico",
+        "nome": "Fot\u00f3foro Cir\u00fargico",
         "status": "novo"
     },
     {
@@ -161,12 +161,12 @@
     },
     {
         "id": 33,
-        "nome": "Carrinho de Emergência",
+        "nome": "Carrinho de Emerg\u00eancia",
         "status": "novo"
     },
     {
         "id": 34,
-        "nome": "Balança Antropométrica",
+        "nome": "Balan\u00e7a Antropom\u00e9trica",
         "status": "novo"
     },
     {
@@ -186,7 +186,7 @@
     },
     {
         "id": 38,
-        "nome": "Oxigenador Portátil",
+        "nome": "Oxigenador Port\u00e1til",
         "status": "novo"
     },
     {
@@ -201,7 +201,7 @@
     },
     {
         "id": 41,
-        "nome": "Lanterna Clínica",
+        "nome": "Lanterna Cl\u00ednica",
         "status": "novo"
     },
     {
@@ -221,7 +221,7 @@
     },
     {
         "id": 45,
-        "nome": "Tensímetro Digital",
+        "nome": "Tens\u00edmetro Digital",
         "status": "novo"
     },
     {
@@ -231,7 +231,7 @@
     },
     {
         "id": 47,
-        "nome": "Calibrador de Pressão",
+        "nome": "Calibrador de Press\u00e3o",
         "status": "novo"
     },
     {
