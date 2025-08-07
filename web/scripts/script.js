@@ -16,7 +16,7 @@ document.getElementById('loginForm')?.addEventListener('submit', async function 
 
     const urls = [
         'http://127.0.0.1:5000/login',
-        'https://dc61-177-74-79-181.ngrok-free.app/login'
+        'https://f54fc4592313.ngrok-free.app/login'
     ];
 
     for (const url of urls) {
@@ -51,7 +51,7 @@ document.getElementById('cadastroUsuarioForm')?.addEventListener('submit', async
     const newUser = { username: novoUsername, password: novaSenha };
     const urls = [
         'http://127.0.0.1:5000/cadastro-usuario',
-        'https://dc61-177-74-79-181.ngrok-free.app/cadastro-usuario'
+        'https://f54fc4592313.ngrok-free.app/cadastro-usuario'
     ];
 
     for (const url of urls) {
@@ -99,7 +99,7 @@ document.getElementById('cadastroForm')?.addEventListener('submit', async functi
     const equipamento = { numeroSerie, local, funcionario };
     const urls = [
         'http://127.0.0.1:5000/busca-cadastro',
-        'https://dc61-177-74-79-181.ngrok-free.app/busca-cadastro'
+        'https://f54fc4592313.ngrok-free.app/busca-cadastro'
     ];
 
     for (const url of urls) {
@@ -138,7 +138,7 @@ document.addEventListener('DOMContentLoaded', async function () {
 
     const urls = [
         'http://127.0.0.1:5000/equipamento',
-        'https://dc61-177-74-79-181.ngrok-free.app/equipamento'
+        'https://f54fc4592313.ngrok-free.app/equipamento'
     ];
 
     let equipamentoNomeMap = {};
@@ -205,7 +205,7 @@ document.getElementById('cadastroNovos')?.addEventListener('submit', async funct
 
     const urls = [
         'http://127.0.0.1:5000/estoque',
-        'https://dc61-177-74-79-181.ngrok-free.app/estoque'
+        'https://f54fc4592313.ngrok-free.app/estoque'
     ];
 
     let ultimoId = 0;
@@ -251,7 +251,7 @@ document.addEventListener('DOMContentLoaded', async function () {
 
     const urls = [
         'http://127.0.0.1:5000/estoque',
-        'https://dc61-177-74-79-181.ngrok-free.app/estoque'
+        'https://f54fc4592313.ngrok-free.app/estoque'
     ];
 
     for (const url of urls) {
@@ -310,7 +310,7 @@ document.addEventListener('DOMContentLoaded', async function () {
 async function excluirEquipamento(id) {
     const urls = [
         'http://127.0.0.1:5000/estoque',
-        'https://dc61-177-74-79-181.ngrok-free.app/estoque'
+        'https://f54fc4592313.ngrok-free.app/estoque'
     ];
 
     for (const url of urls) {
