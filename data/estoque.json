@@ -6,17 +6,17 @@
     },
     {
         "id": 2,
-        "nome": "Monitor Card\u00edaco",
+        "nome": "Monitor Cardíaco",
         "status": "Em Uso"
     },
     {
         "id": 3,
-        "nome": "Bomba de Infus\u00e3o",
+        "nome": "Bomba de Infusão",
         "status": "novo"
     },
     {
         "id": 4,
-        "nome": "Eletrocardi\u00f3grafo",
+        "nome": "Eletrocardiógrafo",
         "status": "novo"
     },
     {
@@ -26,17 +26,17 @@
     },
     {
         "id": 6,
-        "nome": "Ox\u00edmetro de Pulso",
+        "nome": "Oxímetro de Pulso",
         "status": "novo"
     },
     {
         "id": 7,
-        "nome": "Ventilador Mec\u00e2nico",
+        "nome": "Ventilador Mecânico",
         "status": "novo"
     },
     {
         "id": 8,
-        "nome": "Term\u00f4metro Digital",
+        "nome": "Termômetro Digital",
         "status": "novo"
     },
     {
@@ -46,7 +46,7 @@
     },
     {
         "id": 10,
-        "nome": "Seringa Autom\u00e1tica",
+        "nome": "Seringa Automática",
         "status": "novo"
     },
     {
@@ -56,22 +56,22 @@
     },
     {
         "id": 12,
-        "nome": "Estetosc\u00f3pio",
+        "nome": "Estetoscópio",
         "status": "Em Uso"
     },
     {
         "id": 13,
-        "nome": "Balan\u00e7a Digital",
+        "nome": "Balança Digital",
         "status": "novo"
     },
     {
         "id": 14,
-        "nome": "Laringosc\u00f3pio",
+        "nome": "Laringoscópio",
         "status": "novo"
     },
     {
         "id": 15,
-        "nome": "Bisturi El\u00e9trico",
+        "nome": "Bisturi Elétrico",
         "status": "novo"
     },
     {
@@ -86,27 +86,27 @@
     },
     {
         "id": 18,
-        "nome": "Colch\u00e3o Hospitalar",
+        "nome": "Colchão Hospitalar",
         "status": "novo"
     },
     {
         "id": 19,
-        "nome": "Mesa Cir\u00fargica",
+        "nome": "Mesa Cirúrgica",
         "status": "novo"
     },
     {
         "id": 20,
-        "nome": "Monitor Multiparam\u00e9trico",
+        "nome": "Monitor Multiparamétrico",
         "status": "novo"
     },
     {
         "id": 21,
-        "nome": "Centr\u00edfuga de Laborat\u00f3rio",
+        "nome": "Centrífuga de Laboratório",
         "status": "novo"
     },
     {
         "id": 22,
-        "nome": "Aspirador Cir\u00fargico",
+        "nome": "Aspirador Cirúrgico",
         "status": "novo"
     },
     {
@@ -116,7 +116,7 @@
     },
     {
         "id": 24,
-        "nome": "Bomba de Suc\u00e7\u00e3o",
+        "nome": "Bomba de Sucção",
         "status": "novo"
     },
     {
@@ -126,12 +126,12 @@
     },
     {
         "id": 26,
-        "nome": "Otosc\u00f3pio",
+        "nome": "Otoscópio",
         "status": "novo"
     },
     {
         "id": 27,
-        "nome": "Dermatosc\u00f3pio",
+        "nome": "Dermatoscópio",
         "status": "novo"
     },
     {
@@ -146,7 +146,7 @@
     },
     {
         "id": 30,
-        "nome": "Fot\u00f3foro Cir\u00fargico",
+        "nome": "Fotóforo Cirúrgico",
         "status": "novo"
     },
     {
@@ -161,12 +161,12 @@
     },
     {
         "id": 33,
-        "nome": "Carrinho de Emerg\u00eancia",
+        "nome": "Carrinho de Emergência",
         "status": "novo"
     },
     {
         "id": 34,
-        "nome": "Balan\u00e7a Antropom\u00e9trica",
+        "nome": "Balança Antropométrica",
         "status": "novo"
     },
     {
@@ -186,7 +186,7 @@
     },
     {
         "id": 38,
-        "nome": "Oxigenador Port\u00e1til",
+        "nome": "Oxigenador Portátil",
         "status": "novo"
     },
     {
@@ -201,7 +201,7 @@
     },
     {
         "id": 41,
-        "nome": "Lanterna Cl\u00ednica",
+        "nome": "Lanterna Clínica",
         "status": "novo"
     },
     {
@@ -221,7 +221,7 @@
     },
     {
         "id": 45,
-        "nome": "Tens\u00edmetro Digital",
+        "nome": "Tensímetro Digital",
         "status": "novo"
     },
     {
@@ -231,7 +231,7 @@
     },
     {
         "id": 47,
-        "nome": "Calibrador de Press\u00e3o",
+        "nome": "Calibrador de Pressão",
         "status": "novo"
     },
     {

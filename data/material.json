@@ -1,15 +1,5 @@
 [
     {
-        "numeroSerie": "2",
-        "local": "recepcao",
-        "funcionario": "Gabriel"
-    },
-    {
-        "numeroSerie": "1",
-        "local": "consultorio",
-        "funcionario": "Gabriel"
-    },
-    {
         "numeroSerie": "5",
         "local": "consultorio",
         "funcionario": "luiz fernando"
@@ -20,13 +10,23 @@
         "funcionario": "luiz fernando"
     },
     {
-        "numeroSerie": "12",
-        "local": "consultorio",
-        "funcionario": "Gabriel"
+        "numeroSerie": "50",
+        "local": "laboratorio",
+        "funcionario": "luiz fernando"
     },
     {
-        "numeroSerie": "50",
-        "local": "farmacia",
-        "funcionario": "Gabriel"
+        "numeroSerie": "12",
+        "local": "consultorio",
+        "funcionario": "luiz fernando"
+    },
+    {
+        "numeroSerie": "1",
+        "local": "centro-cirurgico",
+        "funcionario": "luiz fernando"
+    },
+    {
+        "numeroSerie": "2",
+        "local": "radiologia",
+        "funcionario": "luiz fernando"
     }
 ]

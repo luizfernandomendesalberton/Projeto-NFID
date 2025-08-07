@@ -130,5 +130,48 @@ export async function cadastraNFID() {
         alert("Erro ao tentar usar NFC.");
     }
 }
+export async function cadastraPorNFID() {
+    try {
+        if ("NDEFReader" in window) {
+            const ndef = new NDEFReader();
+            await ndef.scan();
+
+            const resposta = document.getElementById("resposta");
+            if (resposta) {
+                resposta.style.display = "block";
+                resposta.innerHTML = "<strong>Aguardando leitura da tag NFC...</strong>";
+            }
+
+            ndef.onreading = event => {
+                if (resposta) resposta.style.display = "none";
+                const decoder = new TextDecoder();
+                for (const record of event.message.records) {
+                    const rawData = decoder.decode(record.data);
+                    try {
+                        const dados = JSON.parse(rawData);
+                        // Preenche os campos do formulário de utilização
+                        document.getElementById("numeroSerie").value = dados.numeroSerie || "";
+                        document.getElementById("local").value = dados.local || "";
+
+                        // Aciona o cadastro automaticamente
+                        const btn = document.querySelector('#cadastroForm button[type="submit"]');
+                        if (btn) btn.click();
+
+                    } catch (erro) {
+                        if (resposta) {
+                            resposta.style.display = "block";
+                            resposta.innerHTML = "<strong>Erro ao interpretar os dados da tag NFC.</strong>";
+                            setTimeout(() => { resposta.style.display = "none"; }, 2000);
+                        }
+                    }
+                }
+            };
+        } else {
+            alert("NFC não é suportado neste navegador.");
+        }
+    } catch (erro) {
+        alert("Erro ao tentar usar NFC.");
+    }
+}
 
 export { loginNFC };
