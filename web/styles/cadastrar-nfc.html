@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Cadastrar na Tag NFC</title>
+    <link rel="stylesheet" href="./styles/style.css">
+    <link rel="stylesheet" href="./styles/login-cadastro.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body class="tela-cadastro">
+    <div class="container">
+        <h2>Cadastrar Dados na Tag NFC</h2>
+        <form id="formNFC">
+            <label for="nfid">ID (NFID):</label>
+            <input type="text" id="nfid" name="nfid" required>
+
+            <label for="nomeNFC">Nome:</label>
+            <input type="text" id="nomeNFC" name="nomeNFC" required>
+
+            <label for="statusNFC">Status:</label>
+            <select id="statusNFC" name="statusNFC" required>
+                <option value="novo">Novo</option>
+                <option value="usado">Usado</option>
+                <option value="emprestado">Emprestado</option>
+            </select>
+
+            <button type="button" id="gravarNFC" class="btn-principal">Gravar na Tag NFC</button>
+        </form>
+        <div id="respostaNFC" style="margin-top:16px;"></div>
+        <a href="busca-cadastro.html" style="margin-top:20px; display:block;">Voltar</a>
+    </div>
+    <script type="module" src="./scripts/cadastrar-nfc.js"></script>
+    <script type="module" src="./scripts/script.js"></script>
+</body>
+</html>

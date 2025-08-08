@@ -393,6 +393,9 @@ function ativarModoHacker() {
 document.getElementById('entrarNFC')?.addEventListener('click', async function () {
     loginNFC();
 });
+document.getElementById('btnCadastrarNFC')?.addEventListener('click', function() {
+        window.location.href = "cadastrar-nfc.html";
+    });
 document.getElementById('buscarNFID')?.addEventListener('click', buscaNFID);
 document.getElementById('cadastraNFID')?.addEventListener('click', cadastraNFID);
 document.getElementById('cadastraPorNFID')?.addEventListener('click', cadastraPorNFID);

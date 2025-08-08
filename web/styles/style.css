@@ -170,6 +170,9 @@ a:hover {
 ::-webkit-scrollbar-thumb:hover {
     background: #69c8ff;
 }
+.btn-nfc-relatorio{
+    margin-bottom: 20px;
+}
 
 /* Responsividade */
 @media (max-width: 600px) {
