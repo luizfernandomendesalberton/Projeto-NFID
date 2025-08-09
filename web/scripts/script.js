@@ -223,8 +223,8 @@ document.getElementById('cadastroNovos')?.addEventListener('submit', async funct
         }
     }
 
-    const novoId = ultimoId + 1;
-    const novoEquipamento = { id: novoId, nome: nomeEquipamento, status };
+    const id = document.getElementById('id').value;
+      const novoEquipamento = { id, nome: nomeEquipamento, status };
 
     for (const url of urls) {
         try {
