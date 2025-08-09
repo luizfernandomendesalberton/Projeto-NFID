@@ -1,11 +1,15 @@
+// Detecta se está acessando via ngrok
+const isNgrok = window.location.hostname.includes('ngrok-free.app');
+const backendBase = isNgrok
+    ? 'https://9c10dbc75937.ngrok-free.app'
+    : 'http://127.0.0.1:5000';
+
 async function excluirMaterial(id) {
     const confirmacao = confirm('Tem certeza que deseja excluir este material?');
-
     if (!confirmacao) return;
 
     const urls = [
-        `http://127.0.0.1:5000/excluir-material/${id}`,
-        `https://dc61-177-74-79-181.ngrok-free.app/excluir-material/${id}`
+        `${backendBase}/excluir-material/${id}`
     ];
 
     for (const url of urls) {
@@ -48,13 +52,13 @@ function filtrarEquipamentos(tabela, idFiltro, nomeFiltro, statusFiltro) {
         linha.style.display = (idMatch && nomeMatch && statusMatch) ? '' : 'none';
     }
 }
+
 async function excluirEquipamento(id) {
     const confirmacao = confirm('Tem certeza que deseja excluir este equipamento?');
     if (!confirmacao) return;
 
     const urls = [
-        `http://127.0.0.1:5000/estoque/${id}`,
-        `https://dc61-177-74-79-181.ngrok-free.app/estoque/${id}`
+        `${backendBase}/estoque/${id}`
     ];
 
     for (const url of urls) {
@@ -83,8 +87,7 @@ async function carregarEstoque() {
     if (!estoqueTable) return;
 
     const urls = [
-        'http://127.0.0.1:5000/estoque',
-        'https://dc61-177-74-79-181.ngrok-free.app/estoque'
+        `${backendBase}/estoque`
     ];
 
     for (const url of urls) {
@@ -129,8 +132,7 @@ async function carregarEquipamento() {
     if (!equipamentoTable) return;
 
     const urls = [
-        'http://127.0.0.1:5000/equipamento',
-        'https://dc61-177-74-79-181.ngrok-free.app/equipamento'
+        `${backendBase}/equipamento`
     ];
 
     for (const url of urls) {
@@ -174,14 +176,13 @@ async function carregarBusca() {
     if (!buscaTable) return;
 
     const urls = [
-        'http://127.0.0.1:5000/estoque',
-        'https://dc61-177-74-79-181.ngrok-free.app/estoque'
+        `${backendBase}/estoque`
     ];
 
     const materiais = {};
 
     try {
-        const respostaMaterial = await fetch('http://127.0.0.1:5000/equipamentos_completos');
+        const respostaMaterial = await fetch(`${backendBase}/equipamentos_completos`);
         if (respostaMaterial.ok) {
             const materiaisJson = await respostaMaterial.json();
             materiaisJson.forEach(material => {
@@ -217,7 +218,7 @@ async function carregarBusca() {
                     row.insertCell(4).textContent = funcionario;
 
                     if (novoStatus === 'Em Uso' && equipamento.status !== 'Em Uso') {
-                        await fetch(`http://127.0.0.1:5000/atualizar_status/${equipamento.id}`, {
+                        await fetch(`${backendBase}/atualizar_status/${equipamento.id}`, {
                             method: 'PATCH',
                             headers: { 'Content-Type': 'application/json' },
                             body: JSON.stringify({ status: 'Em Uso' })
@@ -233,7 +234,7 @@ async function carregarBusca() {
 }
 
 async function atualizaStatus(numeroSerie) {
-    const url = 'http://127.0.0.1:5000/atualizar_status/' + numeroSerie;
+    const url = `${backendBase}/atualizar_status/${numeroSerie}`;
 
     try {
         const resposta = await fetch(url, {
@@ -254,7 +255,7 @@ async function atualizaStatus(numeroSerie) {
 }
 
 async function atualizaStatusNovo(numeroSerie) {
-    const url = 'http://127.0.0.1:5000/atualizar_status/' + numeroSerie;
+    const url = `${backendBase}/atualizar_status/${numeroSerie}`;
 
     try {
         const resposta = await fetch(url, {
@@ -289,10 +290,10 @@ function dadosUsuarios() {
 
 async function atualizarRelatorioEquipamentos() {
     try {
-        const responseEquipamentos = await fetch('http://127.0.0.1:5000/equipamentos_completos');
+        const responseEquipamentos = await fetch(`${backendBase}/equipamentos_completos`);
         const dadosEquipamentos = await responseEquipamentos.json();
 
-        const responseUsados = await fetch('http://127.0.0.1:5000/equipamento');
+        const responseUsados = await fetch(`${backendBase}/equipamento`);
         const dadosUsados = await responseUsados.json();
 
         let total = dadosEquipamentos.length;

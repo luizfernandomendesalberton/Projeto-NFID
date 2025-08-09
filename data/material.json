@@ -28,5 +28,10 @@
         "numeroSerie": "2",
         "local": "radiologia",
         "funcionario": "luiz fernando"
+    },
+    {
+        "numeroSerie": "98",
+        "local": "laboratorio",
+        "funcionario": "luiz fernando"
     }
 ]
