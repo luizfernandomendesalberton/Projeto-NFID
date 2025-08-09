@@ -1,5 +1,14 @@
 import { excluirMaterial, filtrarEquipamentos, carregarEstoque, carregarEquipamento, carregarBusca, dadosUsuarios, atualizarRelatorioEquipamentos, atualizaStatus } from "./task.js";
 import { loginNFC } from "./nfid.js";
+import { buscaNFID } from "./nfid.js";
+import { cadastraNFID } from './nfid.js';
+import { cadastraPorNFID } from './nfid.js';
+
+// Detecta se está acessando via ngrok
+const isNgrok = window.location.hostname.includes('ngrok-free.app');
+const backendBase = isNgrok
+    ? 'https://9c10dbc75937.ngrok-free.app'
+    : 'http://127.0.0.1:5000';
 
 // Função para realizar o Login com base nos Usuários Cadastrados
 document.getElementById('loginForm')?.addEventListener('submit', async function (event) {
@@ -11,8 +20,7 @@ document.getElementById('loginForm')?.addEventListener('submit', async function 
     const loginData = { username, password };
 
     const urls = [
-        'http://127.0.0.1:5000/login',
-        'https://dc61-177-74-79-181.ngrok-free.app/login'
+        `${backendBase}/login`
     ];
 
     for (const url of urls) {
@@ -46,8 +54,7 @@ document.getElementById('cadastroUsuarioForm')?.addEventListener('submit', async
 
     const newUser = { username: novoUsername, password: novaSenha };
     const urls = [
-        'http://127.0.0.1:5000/cadastro-usuario',
-        'https://dc61-177-74-79-181.ngrok-free.app/cadastro-usuario'
+        `${backendBase}/cadastro-usuario`
     ];
 
     for (const url of urls) {
@@ -91,11 +98,9 @@ document.getElementById('cadastroForm')?.addEventListener('submit', async functi
     const local = document.getElementById('local').value;
     const funcionario = localStorage.getItem('funcionarioAtual');
 
-
     const equipamento = { numeroSerie, local, funcionario };
     const urls = [
-        'http://127.0.0.1:5000/busca-cadastro',
-        'https://dc61-177-74-79-181.ngrok-free.app/busca-cadastro'
+        `${backendBase}/busca-cadastro`
     ];
 
     for (const url of urls) {
@@ -133,14 +138,13 @@ document.addEventListener('DOMContentLoaded', async function () {
     if (!equipamentoTable) return;
 
     const urls = [
-        'http://127.0.0.1:5000/equipamento',
-        'https://dc61-177-74-79-181.ngrok-free.app/equipamento'
+        `${backendBase}/equipamento`
     ];
 
     let equipamentoNomeMap = {};
 
     try {
-        const respostaEquipamentos = await fetch('http://127.0.0.1:5000/estoque');
+        const respostaEquipamentos = await fetch(`${backendBase}/estoque`);
         if (respostaEquipamentos.ok) {
             const equipamentos = await respostaEquipamentos.json();
             equipamentos.forEach(equip => {
@@ -188,6 +192,51 @@ document.addEventListener('DOMContentLoaded', async function () {
     }
 });
 
+// ... trecho 2 ...
+document.addEventListener('DOMContentLoaded', async function () {
+    const equipamentoTable = document.getElementById('estoqueTable')?.getElementsByTagName('tbody')[0];
+    if (!equipamentoTable) return;
+
+    const urls = [
+        `${backendBase}/estoque`
+    ];
+
+    for (const url of urls) {
+        try {
+            const resposta = await fetch(url);
+            if (resposta.ok) {
+                const equipamentos = await resposta.json();
+                equipamentoTable.innerHTML = '';
+
+                equipamentos.forEach((equip) => {
+                    const row = equipamentoTable.insertRow();
+                    row.insertCell(0).textContent = equip.id;
+                    row.insertCell(1).textContent = equip.nome;
+                    row.insertCell(2).textContent = equip.status;
+
+                    // Botão de exclusão
+                    const cellAcoes = row.insertCell(3);
+                    const deleteBtn = document.createElement('button');
+                    deleteBtn.textContent = 'Excluir';
+                    deleteBtn.classList.add('delete-btn');
+                    deleteBtn.setAttribute('data-id', equip.id);
+                    cellAcoes.appendChild(deleteBtn);
+
+                    deleteBtn.addEventListener('click', function () {
+                        const id = this.getAttribute('data-id');
+                        console.log(`ID do equipamento a excluir: ${id}`);
+                        excluirEquipamento(id);
+                    });
+                });
+
+                return;
+            }
+        } catch (error) {
+            console.warn(`Erro ao carregar estoque de ${url}:`, error);
+        }
+    }
+});
+
 document.getElementById('cadastroNovos')?.addEventListener('submit', async function (event) {
     event.preventDefault();
 
@@ -200,27 +249,11 @@ document.getElementById('cadastroNovos')?.addEventListener('submit', async funct
     }
 
     const urls = [
-        'http://127.0.0.1:5000/estoque',
-        'https://dc61-177-74-79-181.ngrok-free.app/estoque'
+        `${backendBase}/estoque`
     ];
 
-    let ultimoId = 0;
-
-    for (const url of urls) {
-        try {
-            const response = await fetch(url);
-            if (response.ok) {
-                const estoque = await response.json();
-                ultimoId = estoque.length > 0 ? estoque[estoque.length - 1].id : 0;
-                break;
-            }
-        } catch (error) {
-            console.warn(`Erro ao buscar estoque de ${url}:`, error);
-        }
-    }
-
-    const novoId = ultimoId + 1;
-    const novoEquipamento = { id: novoId, nome: nomeEquipamento, status };
+    const id = document.getElementById('id').value;
+    const novoEquipamento = { id, nome: nomeEquipamento, status };
 
     for (const url of urls) {
         try {
@@ -246,8 +279,7 @@ document.addEventListener('DOMContentLoaded', async function () {
     if (!equipamentoTable) return;
 
     const urls = [
-        'http://127.0.0.1:5000/estoque',
-        'https://dc61-177-74-79-181.ngrok-free.app/estoque'
+        `${backendBase}/estoque`
     ];
 
     for (const url of urls) {
@@ -305,8 +337,7 @@ document.addEventListener('DOMContentLoaded', async function () {
 // Função para excluir um equipamento
 async function excluirEquipamento(id) {
     const urls = [
-        'http://127.0.0.1:5000/estoque',
-        'https://dc61-177-74-79-181.ngrok-free.app/estoque'
+        `${backendBase}/estoque`
     ];
 
     for (const url of urls) {
@@ -389,6 +420,11 @@ function ativarModoHacker() {
 document.getElementById('entrarNFC')?.addEventListener('click', async function () {
     loginNFC();
 });
-
+document.getElementById('btnCadastrarNFC')?.addEventListener('click', function() {
+        window.location.href = "cadastrar-nfc.html";
+    });
+document.getElementById('buscarNFID')?.addEventListener('click', buscaNFID);
+document.getElementById('cadastraNFID')?.addEventListener('click', cadastraNFID);
+document.getElementById('cadastraPorNFID')?.addEventListener('click', cadastraPorNFID);
 dadosUsuarios();
 atualizarRelatorioEquipamentos();

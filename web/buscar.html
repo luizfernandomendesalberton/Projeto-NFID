@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=no, initial-scale=1, maximum-scale=1, minimum-scale=1">
     <title>Relatório de Equipamentos</title>
     <link rel="stylesheet" href="./styles/style.css">
     <link rel="stylesheet" href="./styles/busca.css">
@@ -27,11 +27,14 @@
                     <option value="all">Buscar por Status</option>
                     <option value="em uso">Em Uso</option>
                     <option value="novo">Novo</option>
+                    <option value="usado">Usado</option>
                     <option value="emprestado">Emprestado</option>
                 </select>
             </p>
             <p>Nome: <input type="text" id="searchNome" placeholder="Nome do Equipamento"></p>
             <button id="searchButton">Buscar</button>
+            <button id="buscarNFID">Buscar NFID</button>
+               
         </div>
     </div>
     <div class="container equipamentos">
@@ -52,6 +55,8 @@
         </div>
     </div>
     <script type="module" src="./scripts/script.js"></script>
+    <script type="module" src="./scripts/task.js"></script>
+    <script type="module" src="./scripts/nfid.js"></script>
 </body>
 
 </html>

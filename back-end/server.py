@@ -59,7 +59,7 @@ def login():
 @app.route('/busca-cadastro', methods=['POST'])
 def cadastrar_material():
     novo_material = request.json
-
+    print("Recebido do frontend:", novo_material) 
     mat_path = os.path.join(DATA_DIR, 'material.json')
     materiais = []
 
@@ -95,8 +95,13 @@ def cadastrar_equipamento():
             except json.JSONDecodeError:
                 equipamentos = []
 
-    ultimo_id = equipamentos[-1]["id"] if equipamentos else 0
-    novo_equipamento["id"] = ultimo_id + 1
+    # Aqui, apenas use o ID informado pelo usuário
+    # novo_equipamento["id"] já deve estar presente
+
+    # Opcional: verifique se o ID já existe
+    for eq in equipamentos:
+        if str(eq.get("id")) == str(novo_equipamento.get("id")):
+            return jsonify({"mensagem": "ID já cadastrado!"}), 400
 
     equipamentos.append(novo_equipamento)
 
@@ -223,7 +228,7 @@ def excluir_equipamento(id):
     with open(material_path, 'r', encoding='utf-8') as f:
         equipamentos = json.load(f)
 
-    equipamentos = [m for m in equipamentos if m.get("id") != int(id)]
+    equipamentos = [m for m in equipamentos if str(m.get("id")) != str(id)]
 
     try:
         with open(material_path, 'w', encoding='utf-8') as f:

@@ -3,23 +3,27 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=no, initial-scale=1, maximum-scale=1, minimum-scale=1">
     <title>Cadastro de Equipamentos</title>
     <link rel="stylesheet" href="./styles/login-cadastro.css">
     <link rel="stylesheet" href="./styles/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
 </head>
 
-<body>
+<body class="tela-cadastro">
     <div id="usuario" class="-flex">
         <img src="" alt="avatar" id="avatar">
         <div id="nomeUsuario"><span type="text" id="funcionario" name="funcionario" required></span></div>
         <a id="sair" style="margin: 0px; text-align: center;" href="login.html">Sair</a>
     </div>
     <div id="pagina">
+    
         <div class="container novos" style="margin-right: 30px;">
             <h2>Cadastrar Equipamentos</h2>
             <form id="cadastroNovos">
+                <label for="id">ID NFID:</label>
+                 <input type="text" id="id" name="id" placeholder="Numero NFID " required >
+
                 <label for="nomeEquipamento">Nome:</label>
                 <input type="text" id="nomeEquipamento" name="nomeEquipamento" placeholder="Nome do Equipamento" required>
 
@@ -31,12 +35,16 @@
                     <option value="emprestado">Emprestado</option>
                 </select>
 
-                <button type="cadastrarEquipamentoNovo">Cadastrar</button>
+                <button type="cadastrarEquipamentoNovo">Cadastrar</button>   
+                <button type="button" id="cadastraNFID">Cadastrar via NFC</button>
                 <a id="estoqueF" href="estoque.html">Ver Estoque</a>
             </form>
         </div>
-        <div class="containerbuscar" style="margin-right: 30px;">
+        <div class="container buscar" style="margin-right: 30px;">
             <h2>Buscar Equipamentos</h2>
+         <button id="btnCadastrarNFC" type="button" class="btn-nfc-relatorio">
+        <span style="font-size:1.2em;vertical-align:middle;">&#128421;</span> Cadastrar NFC
+        </button>  
             <form id="Busca">
                 <div id="info">
                     <h4>Relatório de Equipamentos</h4>
@@ -70,12 +78,15 @@
                     <option value="almoxarifado">Almoxarifado</option>
                 </select>
                 <button type="submit">Cadastrar</button>
+                <button type="button" id="cadastraPorNFID">Cadastra por NFID</button>
                 <a id="UsoEquipo" href="equipamentos.html">Ver Usos</a>
             </form>
         </div>
     </div>
 
     <script type="module" src="./scripts/script.js"></script>
+    <script type="module" src="./scripts/task.js"></script>
+    <script type="module" src="./scripts/nfid.js"></script>
 </body>
 
 </html>

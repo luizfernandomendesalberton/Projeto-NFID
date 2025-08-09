@@ -248,5 +248,10 @@
         "id": 50,
         "nome": "Detector de Gases",
         "status": "Em Uso"
+    },
+    {
+        "id": "98",
+        "nome": "Crash cart",
+        "status": "usado"
     }
 ]
