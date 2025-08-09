@@ -62,7 +62,7 @@ export async function buscaNFID() {
                     try {
                         const dados = JSON.parse(rawData);
                         // Preenche os campos já existentes
-                        document.getElementById("searchInput").value = dados.nfid || "";
+                        document.getElementById("searchInput").value = dados.id || "";
                         document.getElementById("searchNome").value = dados.nome || "";
                         document.getElementById("filterStatus").value = (dados.status || "all").toLowerCase();
 
@@ -106,7 +106,7 @@ export async function cadastraNFID() {
                     try {
                         const dados = JSON.parse(rawData);
                         // Preenche os campos do formulário de cadastro
-                        document.getElementById("nfid").value = dados.nfid || "";
+                       document.getElementById("id").value = dados.id || dados.nfid || dados.numeroSerie || "";
                         document.getElementById("nomeEquipamento").value = dados.nome || "";
                         document.getElementById("status").value = (dados.status || "novo").toLowerCase();
 
@@ -149,9 +149,8 @@ export async function cadastraPorNFID() {
                     const rawData = decoder.decode(record.data);
                     try {
                         const dados = JSON.parse(rawData);
-                        // Preenche os campos do formulário de utilização
-                        document.getElementById("numeroSerie").value = dados.numeroSerie || "";
-                        document.getElementById("local").value = dados.local || "";
+                        // Preenche apenas o campo de número de série do formulário de utilização
+                        document.getElementById("numeroSerie").value = dados.id || dados.nfid || dados.numeroSerie || "";
 
                         // Aciona o cadastro automaticamente
                         const btn = document.querySelector('#cadastroForm button[type="submit"]');

@@ -59,7 +59,7 @@ def login():
 @app.route('/busca-cadastro', methods=['POST'])
 def cadastrar_material():
     novo_material = request.json
-
+    print("Recebido do frontend:", novo_material) 
     mat_path = os.path.join(DATA_DIR, 'material.json')
     materiais = []
 
