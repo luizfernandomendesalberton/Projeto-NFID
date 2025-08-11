@@ -33,5 +33,10 @@
         "numeroSerie": "98",
         "local": "laboratorio",
         "funcionario": "luiz fernando"
+    },
+    {
+        "numeroSerie": "930558",
+        "local": "consultorio",
+        "funcionario": "luiz fernando"
     }
 ]
