@@ -1,9 +1,5 @@
 // Detecta se está acessando via ngrok
-const isNgrok = window.location.hostname.includes('ngrok-free.app');
-const backendBase = isNgrok
-    ? 'https://5f9a2320bab3.ngrok-free.app'
-    : 'http://127.0.0.1:5000';
-
+import { backendBase } from './script.js';
 async function excluirMaterial(id) {
     const confirmacao = confirm('Tem certeza que deseja excluir este material?');
     if (!confirmacao) return;

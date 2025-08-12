@@ -7,9 +7,9 @@ import { cadastraPorNFID } from './nfid.js';
 // Detecta se está acessando via ngrok
 const isNgrok = window.location.hostname.includes('ngrok-free.app');
 const backendBase = isNgrok
-    ? 'https://5f9a2320bab3.ngrok-free.app'
+    ? 'https://8884e54ebbb2.ngrok-free.app'
     : 'http://127.0.0.1:5000';
-
+export {backendBase};
 // Função para realizar o Login com base nos Usuários Cadastrados
 document.getElementById('loginForm')?.addEventListener('submit', async function (event) {
     event.preventDefault();
