@@ -10,20 +10,19 @@
 </head>
 <body>
     <div class="container">
-        <h2>Login - por NFC</h2>
+        <h2>Gravar Login de Usuário na NFC</h2>
         <form id="loginNFC">
-            <label for="novoUsername">Usuário:</label>
-            <input type="text" id="novoUsername" name="novoUsername" required>
+            <label for="usuarioNFC">Usuário:</label>
+            <input type="text" id="usuarioNFC" name="usuarioNFC" required>
 
-            <label for="novaSenha">Senha:</label>
-            <input type="password" id="novaSenha" name="novaSenha" required>
+            <label for="senhaNFC">Senha:</label>
+            <input type="password" id="senhaNFC" name="senhaNFC" required>
 
-            <button type="submit">gravarNFC</button>
+            <button type="button" id="gravarLoginNFC">Gravar Login na NFC</button>
             <a id="voltar" href="cadastro-usuario.html">Voltar</a>
+            <div id="respostaLoginNFC"></div>
         </form>
     </div>
-    <script type="module" src="./scripts/script.js"></script>
-    <script type="module" src="./scripts/task.js"></script>
-    <script type="module" src="./scripts/nfid.js"></script>
+    <script type="module" src="./scripts/gravar-login-nfc.js"></script>
 </body>
 </html>
