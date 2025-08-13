@@ -423,6 +423,9 @@ document.getElementById('entrarNFC')?.addEventListener('click', async function (
 document.getElementById('btnCadastrarNFC')?.addEventListener('click', function() {
         window.location.href = "cadastrar-nfc.html";
     });
+document.getElementById('cadastraNovoNFC')?.addEventListener('click', function() {
+    window.location.href = "cadastra-loginNFC.html";
+});
 document.getElementById('buscarNFID')?.addEventListener('click', buscaNFID);
 document.getElementById('cadastraNFID')?.addEventListener('click', cadastraNFID);
 document.getElementById('cadastraPorNFID')?.addEventListener('click', cadastraPorNFID);
