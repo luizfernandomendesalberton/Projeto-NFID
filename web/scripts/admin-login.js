@@ -17,7 +17,7 @@ if (adminLoginForm) {
         const pass = document.getElementById('adminPass').value;
         // Aqui você pode fazer um fetch para o backend para autenticar admin
         // Exemplo fake:
-        if(user === 'admin' && pass === 'admin123') {
+        if(user === 'luiz fernando' && pass === 'ecalfma') {
             window.location.href = 'admin-panel.html';
         } else {
             document.getElementById('adminLoginMsg').innerText = 'Usuário ou senha inválidos!';
