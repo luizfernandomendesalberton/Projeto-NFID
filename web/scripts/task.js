@@ -279,6 +279,8 @@ function dadosUsuarios() {
         avatar.src = './assets/imagens/gabriel.jpg';
     } else if (NomeUsuario === "luiz fernando") {
         avatar.src = './assets/imagens/luiz.png';
+    } else if (NomeUsuario === "ana") {
+        avatar.src = './assets/imagens/ana.jpg';
     } else {
         avatar.src = './assets/imagens/novo.png';
     }
