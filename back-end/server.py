@@ -17,6 +17,10 @@ ASSETS_DIR = os.path.abspath(os.path.join(BASE_DIR, "..", "assets"))
 def index():
     return send_from_directory(WEB_DIR, 'login.html')
 
+@app.route('/data/<path:filename>')
+def serve_data(filename):
+    return send_from_directory('../data', filename)
+
 # 🔹 Rota para cadastrar funcionário
 @app.route('/cadastro-usuario', methods=['POST'])
 def cadastrar_funcionario():

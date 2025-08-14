@@ -9,6 +9,10 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
 </head>
 <body>
+    <div id="admin-login-btn" style="position: absolute; top: 20px; right: 30px;">
+        <button onclick="document.getElementById('admin-modal').style.display='block'">Entrar como Administrador</button>
+    </div>
+
     <div class="container">
         <div id="resposta" style="display: none;">teste</div>
         <h2>Login</h2>
@@ -21,10 +25,26 @@
             
             <button id="entrarFuncionario" type="submit">Entrar</button>
         </form>
-        <a href="cadastro-usuario.html">Cadastrar Novo Usuário?</a>
     </div>
     <button id="entrarNFC">Login NFC</button>
 
+<!-- Modal de login de admin -->
+    <div id="admin-modal" style="display:none; position:fixed; top:0; left:0; width:100vw; height:100vh; background:rgba(0,0,0,0.4); z-index:1000; justify-content:center; align-items:center;">
+        <div style="background:#1b2a4e; border-radius:16px; padding:32px; min-width:320px; margin:100px auto; position:relative; box-shadow:0 0 20px #0008; color:#e0f7ff;">
+            <span style="position:absolute; top:10px; right:16px; cursor:pointer; font-size:22px; color:#fff;" onclick="document.getElementById('admin-modal').style.display='none'">&times;</span>
+            <h3>Login Administrador</h3>
+            <form id="adminLoginForm">
+                <label for="adminUser">Usuário:</label>
+                <input type="text" id="adminUser" name="adminUser" required style="width:100%;margin-bottom:10px;">
+                <label for="adminPass">Senha:</label>
+                <input type="password" id="adminPass" name="adminPass" required style="width:100%;margin-bottom:16px;">
+                <button type="submit" style="width:100%;">Entrar</button>
+            </form>
+            <div id="adminLoginMsg" style="margin-top:10px;color:#ffbaba;"></div>
+        </div>
+    </div>
+
     <script type="module" src="./scripts/script.js"></script>
+    <script type="module" src="./scripts/admin-login.js"></script>
 </body>
 </html>
