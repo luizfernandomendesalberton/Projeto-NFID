@@ -263,6 +263,23 @@ def excluir_material(numeroSerie):
 
     return jsonify({"mensagem": "Material excluído com sucesso!"})
 
+@app.route('/excluir-usuario/<id>', methods=['DELETE'])
+def excluir_usuario(id):
+    caminho = os.path.join(DATA_DIR, 'funcionario.json')
+    if not os.path.exists(caminho):
+        return jsonify({'mensagem': 'Arquivo não encontrado'}), 404
+
+    with open(caminho, 'r', encoding='utf-8') as f:
+        usuarios = json.load(f)
+
+    # Remove pelo campo que você usa como id (ajuste conforme seu JSON)
+    usuarios = [u for u in usuarios if str(u.get('id') or u.get('username') or u.get('nome')) != id]
+
+    with open(caminho, 'w', encoding='utf-8') as f:
+        json.dump(usuarios, f, ensure_ascii=False, indent=4)
+
+    return jsonify({'mensagem': 'Usuário excluído com sucesso!'})
+
 # 🔹 Rota para servir arquivos da pasta assets (imagens, ícones, vídeos)
 @app.route('/assets/<path:filename>')
 def serve_assets(filename):

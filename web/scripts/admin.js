@@ -5,18 +5,17 @@ const usuariosTable = document.getElementById('usuariosTable').getElementsByTagN
 
 async function carregarUsuarios() {
     try {
-        // Ajuste a URL conforme seu backend
-        const resposta = await fetch('../data/funcionario.json');
+        const resposta = await fetch('http://127.0.0.1:5000/funcionarios');
         if (resposta.ok) {
             const usuarios = await resposta.json();
             usuariosTable.innerHTML = '';
             usuarios.forEach(usuario => {
                 const row = usuariosTable.insertRow();
-                row.insertCell(0).textContent = usuario.nome || usuario.username || usuario.user || 'Usuário';
+                row.insertCell(0).textContent = usuario.username || usuario.nome || usuario.id || 'Usuário';
                 const cellAcoes = row.insertCell(1);
                 const btnExcluir = document.createElement('button');
                 btnExcluir.textContent = 'Excluir';
-                btnExcluir.onclick = () => excluirUsuario(usuario.id || usuario.nome);
+                btnExcluir.onclick = () => excluirUsuario(usuario.username || usuario.nome || usuario.id);
                 cellAcoes.appendChild(btnExcluir);
             });
         } else {
@@ -30,11 +29,8 @@ async function carregarUsuarios() {
 async function excluirUsuario(id) {
     if (!confirm('Tem certeza que deseja excluir este usuário?')) return;
     try {
-        // Ajuste a URL e método conforme seu backend
-        const resposta = await fetch(`../data/funcionario.json`, {
-            method: 'DELETE',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ id })
+        const resposta = await fetch(`http://127.0.0.1:5000/excluir-usuario/${encodeURIComponent(id)}`, {
+            method: 'DELETE'
         });
         if (resposta.ok) {
             alert('Usuário excluído com sucesso!');
@@ -46,7 +42,5 @@ async function excluirUsuario(id) {
         alert('Erro ao excluir usuário.');
     }
 }
-
-
 
 carregarUsuarios();
