@@ -1,5 +1,7 @@
 // Detecta se está acessando via ngrok
 import { backendBase } from './script.js';
+import { excluirEquipamentoCompleto } from './excluir-equipamento.js';
+
 async function excluirMaterial(id) {
     const confirmacao = confirm('Tem certeza que deseja excluir este material?');
     if (!confirmacao) return;
@@ -212,6 +214,14 @@ async function carregarBusca() {
                     const local = materiais[equipamento.id]?.local || 'Não atribuído';
                     row.insertCell(3).textContent = local;
                     row.insertCell(4).textContent = funcionario;
+
+                    // NOVA COLUNA: Ações
+                    const cellAcoes = row.insertCell(5);
+                    const btnExcluir = document.createElement('button');
+                    btnExcluir.textContent = 'Excluir';
+                    btnExcluir.className = 'btn-excluir';
+                    btnExcluir.onclick = () => excluirEquipamentoCompleto(equipamento.id);
+                    cellAcoes.appendChild(btnExcluir);
 
                     if (novoStatus === 'Em Uso' && equipamento.status !== 'Em Uso') {
                         await fetch(`${backendBase}/atualizar_status/${equipamento.id}`, {
