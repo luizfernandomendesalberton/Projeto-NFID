@@ -1,16 +1,27 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=no, initial-scale=1, maximum-scale=1, minimum-scale=1">
     <title>Cadastro de Equipamentos</title>
     <link rel="stylesheet" href="./styles/login-cadastro.css">
     <link rel="stylesheet" href="./styles/style.css">
+    <link rel="stylesheet" href="./styles/menu.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
 </head>
 
 <body class="tela-cadastro">
+    <button id="btn-menu" class="btn-menu-tab">☰</button>
+    <nav class="sidebar">
+        <h2>Menu</h2>
+        <ul>
+            <li><a href="#" id="menu-cadastrar"><span class="icon-menu">📋</span> Cadastrar Equipamento</a></li>
+            <li><a href="#" id="menu-buscar"><span class="icon-menu">🔍</span> Buscar Equipamento</a></li>
+            <li><a href="#" id="menu-utilizar"><span class="icon-menu">🛠️</span> Utilizar Equipamento</a></li>
+        </ul>
+    </nav>
     <!-- Avatar flutuante -->
     <button id="avatar" aria-label="Perfil do usuário"></button>
     <!-- Modal de usuário -->
@@ -25,9 +36,8 @@
             <button id="salvar-modal" class="btn-sair-modal" type="button" style="margin-top:8px;background:#2575fc;">Salvar</button>
         </div>
     </div>
-    <div id="pagina">
-    
-        <div class="container novos" style="margin-right: 30px;">
+    <div id="pagina" style="margin-left:0;">
+        <div class="container novos" id="cadastrar-section" style="margin-right: 30px;">
             <h2>Cadastrar Equipamentos</h2>
             <form id="cadastroNovos">
                 <label for="id">ID NFID:</label>
@@ -49,7 +59,7 @@
                 <a id="estoqueF" href="estoque.html">Ver Estoque</a>
             </form>
         </div>
-        <div class="container buscar" style="margin-right: 30px;">
+    <div class="container buscar" id="buscar-section" style="margin-right: 30px;">
             <h2>Buscar Equipamentos</h2>
          <button id="btnCadastrarNFC" type="button" class="btn-nfc-relatorio">
         <span style="font-size:1.2em;vertical-align:middle;">&#128421;</span> Cadastrar NFC
@@ -66,7 +76,7 @@
                 <a id="buscarEquip" href="buscar.html">buscar</a>
             </form>
         </div>
-        <div class="container vincular">
+    <div class="container vincular" id="utilizar-section">
             <h2>Utilizar os Equipamentos</h2>
             <form id="cadastroForm">
                 <label for="numeroSerie">Número de Série:</label>
@@ -96,6 +106,7 @@
     <script type="module" src="./scripts/script.js"></script>
     <script type="module" src="./scripts/task.js"></script>
     <script type="module" src="./scripts/nfid.js"></script>
+    <script src="./scripts/menu-toggle.js"></script>
 </body>
 <script type="module" src="./scripts/user-modal.js"></script>
 </body>
