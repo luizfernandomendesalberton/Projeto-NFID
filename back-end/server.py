@@ -6,14 +6,39 @@ import mysql.connector
 import os
 from flask_cors import CORS
 
+
 app = Flask(__name__)
 CORS(app)
+
 
 # Caminhos das pastas
 BASE_DIR = os.path.abspath(os.path.dirname(__file__))
 WEB_DIR = os.path.abspath(os.path.join(BASE_DIR, "..", "web"))
 DATA_DIR = os.path.abspath(os.path.join(BASE_DIR, "..", "data"))
 ASSETS_DIR = os.path.abspath(os.path.join(BASE_DIR, "..", "assets"))
+
+
+# Rota para buscar dados do usuário (cargo/email) pelo username
+@app.route('/usuario/<username>', methods=['GET'])
+def get_usuario(username):
+    try:
+        conn = mysql.connector.connect(
+            user='root',
+            password='ecalfma',
+            host='localhost',
+            database='projeto_nfid'
+        )
+        cursor = conn.cursor(dictionary=True)
+        cursor.execute("SELECT cargo, email FROM funcionario WHERE username = %s", (username,))
+        usuario = cursor.fetchone()
+        cursor.close()
+        conn.close()
+        if usuario:
+            return jsonify(usuario)
+        else:
+            return jsonify({'mensagem': 'Usuário não encontrado'}), 404
+    except Exception as e:
+        return jsonify({'mensagem': f'Erro ao buscar usuário: {str(e)}'}), 500
 
 # inicia o programa no login
 @app.route('/')
@@ -78,6 +103,32 @@ def login():
             return jsonify({"mensagem": "Usuário ou senha incorretos!"}), 401
     except Exception as e:
         return jsonify({"mensagem": f"Erro ao fazer login: {str(e)}"}), 500
+    
+    # Rota para atualizar cargo e email do usuário
+@app.route('/atualizar-usuario', methods=['PATCH'])
+def atualizar_usuario():
+    dados = request.json
+    username = dados.get('username')
+    cargo = dados.get('cargo')
+    email = dados.get('email')
+    if not username:
+        return jsonify({'mensagem': 'Usuário não informado!'}), 400
+    try:
+        conn = mysql.connector.connect(
+            user='root',
+            password='ecalfma',
+            host='localhost',
+            database='projeto_nfid'
+        )
+        cursor = conn.cursor()
+        cursor.execute("UPDATE funcionario SET cargo = %s, email = %s WHERE username = %s", (cargo, email, username))
+        conn.commit()
+        cursor.close()
+        conn.close()
+        return jsonify({'mensagem': 'Dados atualizados com sucesso!'})
+    except Exception as e:
+        return jsonify({'mensagem': f'Erro ao atualizar usuário: {str(e)}'}), 500
+    
 
 # 🔹 Rota para cadastrar material (MySQL)
 @app.route('/busca-cadastro', methods=['POST'])

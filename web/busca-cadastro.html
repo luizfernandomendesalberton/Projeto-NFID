@@ -11,10 +11,19 @@
 </head>
 
 <body class="tela-cadastro">
-    <div id="usuario" class="-flex">
-        <img src="" alt="avatar" id="avatar">
-        <div id="nomeUsuario"><span type="text" id="funcionario" name="funcionario" required></span></div>
-        <a id="sair" style="margin: 0px; text-align: center;" href="login.html">Sair</a>
+    <!-- Avatar flutuante -->
+    <button id="avatar" aria-label="Perfil do usuário"></button>
+    <!-- Modal de usuário -->
+    <div id="user-modal" class="user-modal">
+        <div class="user-modal-content">
+            <span class="close-modal" id="closeUserModal">&times;</span>
+            <img src="" alt="avatar" id="avatar-modal" style="width:80px;height:80px;border-radius:50%;margin-bottom:10px;object-fit:cover;">
+            <h3 id="user-modal-nome"></h3>
+            <p id="user-modal-cargo"></p>
+            <p id="user-modal-email"></p>
+            <a id="sair-modal" href="login.html" class="btn-sair-modal">Sair</a>
+            <button id="salvar-modal" class="btn-sair-modal" type="button" style="margin-top:8px;background:#2575fc;">Salvar</button>
+        </div>
     </div>
     <div id="pagina">
     
@@ -87,6 +96,8 @@
     <script type="module" src="./scripts/script.js"></script>
     <script type="module" src="./scripts/task.js"></script>
     <script type="module" src="./scripts/nfid.js"></script>
+</body>
+<script type="module" src="./scripts/user-modal.js"></script>
 </body>
 
 </html>
