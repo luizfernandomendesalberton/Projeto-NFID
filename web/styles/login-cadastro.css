@@ -41,7 +41,10 @@ button:hover {
 
 #cadastrarF {
     width: 100px;
-    height: 40px;
+    height: 50px;
+    position: relative;
+    top: -3px;
+    margin-bottom: 20px;
 }
 
 #entrarFuncionario {
@@ -77,6 +80,10 @@ button:hover {
     cursor: pointer;
     transition: transform 0.3s ease, background 0.3s ease;
     background: linear-gradient(135deg, #ff2222, #ff6262);
+}
+#voltarLogin{
+    width: 100px;
+    height: 50px;
 }
 
 #voltarLogin:hover, #sair:hover, #voltarEstoque:hover {

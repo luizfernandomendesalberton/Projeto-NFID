@@ -1,3 +1,67 @@
+// Cadastro de usuário via NFC
+export async function cadastraUsuarioNFC() {
+    try {
+        if ("NDEFReader" in window) {
+            const ndef = new NDEFReader();
+            await ndef.scan();
+
+            let resposta = document.getElementById("resposta");
+            if (!resposta) {
+                resposta = document.createElement("div");
+                resposta.id = "resposta";
+                resposta.style.margin = "10px 0";
+                document.body.appendChild(resposta);
+            }
+            resposta.style.display = "block";
+            resposta.innerHTML = "<strong>Aguardando leitura da tag NFC...</strong>";
+
+            ndef.onreading = async event => {
+                resposta.style.display = "none";
+                const decoder = new TextDecoder();
+                for (const record of event.message.records) {
+                    const rawData = decoder.decode(record.data);
+                    try {
+                        const dados = JSON.parse(rawData);
+                        // Espera-se que a tag tenha pelo menos username e password
+                        if (!dados.username || !dados.password) {
+                            alert("A tag NFC deve conter pelo menos username e password.");
+                            return;
+                        }
+                        // Monta o objeto para cadastro
+                        const usuario = {
+                            username: dados.username,
+                            password: dados.password,
+                            nome: dados.nome || '',
+                            cargo: dados.cargo || '',
+                            email: dados.email || ''
+                        };
+                        // Envia para o backend
+                        const resp = await fetch('/cadastro-usuario', {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify(usuario)
+                        });
+                        if (resp.ok) {
+                            const result = await resp.json();
+                            alert(result.mensagem || 'Usuário cadastrado com sucesso!');
+                        } else {
+                            const result = await resp.json();
+                            alert(result.mensagem || 'Erro ao cadastrar usuário.');
+                        }
+                    } catch (erro) {
+                        resposta.style.display = "block";
+                        resposta.innerHTML = "<strong>Erro ao interpretar os dados da tag NFC.</strong>";
+                        setTimeout(() => { resposta.style.display = "none"; }, 2000);
+                    }
+                }
+            };
+        } else {
+            alert("NFC não é suportado neste navegador.");
+        }
+    } catch (erro) {
+        alert("Erro ao tentar usar NFC.");
+    }
+}
 
 async function loginNFC() {
     try {
@@ -54,22 +118,64 @@ export async function buscaNFID() {
                 resposta.innerHTML = "<strong>Aguardando leitura da tag NFC...</strong>";
             }
 
-            ndef.onreading = event => {
+            ndef.onreading = async event => {
                 if (resposta) resposta.style.display = "none";
                 const decoder = new TextDecoder();
                 for (const record of event.message.records) {
                     const rawData = decoder.decode(record.data);
                     try {
                         const dados = JSON.parse(rawData);
-                        // Preenche os campos já existentes
-                        document.getElementById("searchInput").value = dados.id || "";
-                        document.getElementById("searchNome").value = dados.nome || "";
-                        document.getElementById("filterStatus").value = (dados.status || "all").toLowerCase();
-
-                        // Aciona a busca automaticamente, se desejar:
-                        const btn = document.getElementById("searchButton");
-                        if (btn) btn.click();
-
+                        const idBuscado = dados.id || dados.nfid || dados.numeroSerie || "";
+                        if (!idBuscado) {
+                            alert("Tag NFC não contém ID do equipamento.");
+                            return;
+                        }
+                        // Busca o equipamento na lista e exibe na tabela, incluindo local, funcionário e ação de exclusão
+                        const buscaTable = document.getElementById('buscaTable')?.getElementsByTagName('tbody')[0];
+                        if (!buscaTable) return;
+                        // Busca dados completos
+                        const [resEstoque, resMateriais] = await Promise.all([
+                            fetch(`${window.backendBase || ''}/estoque`),
+                            fetch(`${window.backendBase || ''}/equipamentos_completos`)
+                        ]);
+                        if (resEstoque.ok && resMateriais.ok) {
+                            const lista = await resEstoque.json();
+                            const materiaisJson = await resMateriais.json();
+                            const materiais = {};
+                            materiaisJson.forEach(material => {
+                                materiais[material.id] = {
+                                    local: material.local || 'Não atribuído',
+                                    funcionario: material.funcionario || 'Nenhum'
+                                };
+                            });
+                            buscaTable.innerHTML = '';
+                            const encontrado = lista.find(e => String(e.id) === String(idBuscado));
+                            if (encontrado) {
+                                const row = buscaTable.insertRow();
+                                row.insertCell(0).textContent = encontrado.id;
+                                row.insertCell(1).textContent = encontrado.nome;
+                                // Status
+                                const funcionario = materiais[encontrado.id]?.funcionario || 'Nenhum';
+                                const novoStatus = funcionario !== 'Nenhum' ? 'Em Uso' : encontrado.status;
+                                row.insertCell(2).textContent = novoStatus;
+                                // Local
+                                const local = materiais[encontrado.id]?.local || 'Não atribuído';
+                                row.insertCell(3).textContent = local;
+                                // Funcionário
+                                row.insertCell(4).textContent = funcionario;
+                                // Ações
+                                const cellAcoes = row.insertCell(5);
+                                const btnExcluir = document.createElement('button');
+                                btnExcluir.textContent = 'Excluir';
+                                btnExcluir.className = 'btn-excluir';
+                                btnExcluir.onclick = () => {
+                                    import('./excluir-equipamento.js').then(mod => mod.excluirEquipamentoCompleto(encontrado.id));
+                                };
+                                cellAcoes.appendChild(btnExcluir);
+                            } else {
+                                buscaTable.innerHTML = '<tr><td colspan="6">Equipamento não encontrado.</td></tr>';
+                            }
+                        }
                     } catch (erro) {
                         if (resposta) {
                             resposta.style.display = "block";

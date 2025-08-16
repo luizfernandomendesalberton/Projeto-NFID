@@ -1,3 +1,9 @@
+import { cadastraUsuarioNFC } from "./nfid.js";
+
+// Botão para cadastrar usuário via NFC
+document.getElementById('cadastraNovoUsuario')?.addEventListener('click', function() {
+    cadastraUsuarioNFC();
+});
 import { excluirMaterial, filtrarEquipamentos, carregarEstoque, carregarEquipamento, carregarBusca, dadosUsuarios, atualizarRelatorioEquipamentos, atualizaStatus } from "./task.js";
 import { loginNFC } from "./nfid.js";
 import { buscaNFID } from "./nfid.js";
@@ -75,6 +81,33 @@ document.getElementById('cadastroUsuarioForm')?.addEventListener('submit', async
         }
     }
 });
+// Atualiza relatório após cadastro de novo equipamento (formulário cadastroNovos)
+document.getElementById('cadastroNovos')?.addEventListener('submit', async function (event) {
+    event.preventDefault();
+    // Coleta dados do formulário
+    const id = document.getElementById('id').value;
+    const nome = document.getElementById('nomeEquipamento').value;
+    const status = document.getElementById('status').value;
+    const equipamento = { id, nome, status };
+    try {
+        const resposta = await fetch(`${backendBase}/estoque`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(equipamento)
+        });
+        if (resposta.ok) {
+            const resultado = await resposta.json();
+            alert(resultado.mensagem || 'Equipamento cadastrado com sucesso!');
+            document.getElementById('cadastroNovos').reset();
+            atualizarRelatorioEquipamentos(); // Atualiza relatório imediatamente
+        } else {
+            const resultado = await resposta.json();
+            alert(resultado.mensagem || 'Erro ao cadastrar equipamento.');
+        }
+    } catch (erro) {
+        alert('Erro ao conectar com o servidor.');
+    }
+});
 
 document.addEventListener('DOMContentLoaded', function () {
     const funcionarioSpan = document.getElementById('funcionario');
@@ -117,6 +150,7 @@ document.getElementById('cadastroForm')?.addEventListener('submit', async functi
                 document.getElementById('cadastroForm').reset();
                 atualizaStatus(numeroSerie);
                 atualizarRelatorioEquipamentos();
+                carregarEquipamento(); // Atualiza a tabela automaticamente
                 return;
             } else {
                 const resultado = await resposta.json();
