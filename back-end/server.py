@@ -1,3 +1,5 @@
+ngrok_public_url = None
+
 from flask import Flask, send_from_directory, request, jsonify
 import json
 import os
@@ -290,5 +292,23 @@ def serve_assets(filename):
 def serve_static_files(filename):
     return send_from_directory(WEB_DIR, filename)
 
+@app.route('/ngrok-url', methods=['GET'])
+def get_ngrok_url():
+    global ngrok_public_url
+    return jsonify({'ngrok_url': ngrok_public_url})
+
 if __name__ == '__main__':
+    import subprocess
+    import time, requests
+    try:
+        ngrok = subprocess.Popen(["ngrok", "http", "5000"], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+        time.sleep(2)  # Aguarda o ngrok subir
+        try:
+            resp = requests.get("http://localhost:4040/api/tunnels")
+            ngrok_public_url = resp.json()['tunnels'][0]['public_url']
+            print(f"\n[NGROK] URL pública: {ngrok_public_url}\n")
+        except Exception as e:
+            print("[NGROK] ngrok iniciado, mas não foi possível obter a URL pública automaticamente.")
+    except FileNotFoundError:
+        print("[NGROK] ngrok não encontrado. Instale o ngrok e adicione ao PATH para integração automática.")
     app.run(debug=True, port=5000)

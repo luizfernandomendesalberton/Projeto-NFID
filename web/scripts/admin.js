@@ -1,11 +1,13 @@
 // admin.js
 // Carrega e gerencia a lista de usuários para o painel admin
 
+
+import { backendBase } from './script.js';
 const usuariosTable = document.getElementById('usuariosTable').getElementsByTagName('tbody')[0];
 
 async function carregarUsuarios() {
     try {
-        const resposta = await fetch('http://127.0.0.1:5000/funcionarios');
+    const resposta = await fetch(`${backendBase}/funcionarios`);
         if (resposta.ok) {
             const usuarios = await resposta.json();
             usuariosTable.innerHTML = '';
@@ -29,7 +31,7 @@ async function carregarUsuarios() {
 async function excluirUsuario(id) {
     if (!confirm('Tem certeza que deseja excluir este usuário?')) return;
     try {
-        const resposta = await fetch(`http://127.0.0.1:5000/excluir-usuario/${encodeURIComponent(id)}`, {
+    const resposta = await fetch(`${backendBase}/excluir-usuario/${encodeURIComponent(id)}`, {
             method: 'DELETE'
         });
         if (resposta.ok) {

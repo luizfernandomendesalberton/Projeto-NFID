@@ -283,8 +283,9 @@ async function atualizaStatusNovo(numeroSerie) {
 
 function dadosUsuarios() {
     const NomeUsuario = localStorage.getItem('funcionarioAtual');
-
     const avatar = document.getElementById('avatar');
+    if (!avatar) return; // <-- Adicione esta linha
+
     if (NomeUsuario === "Gabriel") {
         avatar.src = './assets/imagens/gabriel.jpg';
     } else if (NomeUsuario === "luiz fernando") {
